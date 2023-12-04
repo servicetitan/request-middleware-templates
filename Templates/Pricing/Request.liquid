@@ -1,0 +1,25 @@
+{
+  "method": "POST",
+  "headers": {
+    {%- for header in source.headers -%}
+      "{{header.Key}}": "{{header.Value | replace: "\\", "\\\\" | replace: '"', '\\"' }}",
+    {%- endfor %}
+      "Content-Type":"application/json"
+  },
+  "body": {
+    "AccountId": "{{ source.body.accountId }}",
+    "SubAccountId": "{{ source.body.subAccountId }}",
+    "Branch": "{{ source.body.branchId }}",
+    "PostalCode": "{{ source.body.customIdentifierFields.postalCode }}",
+    "Items": [
+      {%- for item in source.body.items -%}
+        {
+          "ItemId": "{{ item.itemId }}",
+          "Quantity": {{ item.quantity }},
+          "Type": "{{ item.skuType }}",
+        } {%- unless forloop.last -%},
+      {%- endunless -%}
+      {%- endfor %}
+    ]
+  }
+}
