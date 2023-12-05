@@ -1,0 +1,14 @@
+{
+    "statusCode": {{source.statusCode}},
+    "headers": {
+      {%- for header in source.headers -%}
+        {{ header | as_header }},
+      {%- endunless -%}
+      {%- endfor %}
+    },
+    "body": {
+        "success": false,
+        "errorCode": {{ source.statusCode }},
+        "errorMessage": {{ source.body.ErrorMessage }}
+    }
+}

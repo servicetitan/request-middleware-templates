@@ -22,8 +22,8 @@
               {%- endunless -%}
           {%- endfor %}
         ],
-        "success": {% if source.statusCode == 200 -%}true{%- else -%}false{%- endif %},
-        "errorCode": {% if source.statusCode == 200 -%}0{%- else -%}{{ source.statusCode }}{%- endif %},
-        "errorMessage": {% if source.statusCode != 200 -%}"{{ source.body.ErrorMessage }}"{%- else -%}""{%- endif %}
+        "success": true,
+        "errorCode": 0,
+        "errorMessage": ""
     }
 }
