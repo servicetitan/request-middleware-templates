@@ -1,12 +1,12 @@
 {
-  "method": "POST",
+  "method": "GET",
   "headers": {
     {%- for header in source.headers -%}
       {{ header | as_header }},
     {%- endfor -%}
       "Content-Type":"application/json"
   },
-  "body": {
-      "PostalCode": "{{ source.body.postalCode }}"
-  }
+  "parameters": {
+    "postalCode": "{{ source.body.postalCode }}"
+  },
 }
