@@ -3,8 +3,8 @@
     "headers": {
       {%- for header in source.headers -%}
         {{ header | as_header }},
-      {%- endunless -%}
       {%- endfor %}
+        "Content-Type": "application/json"
     },
     "body": {
         "success": false,
