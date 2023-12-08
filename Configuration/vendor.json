@@ -1,0 +1,13 @@
+{
+    "baseUrl": "https://api.vendor.notrealdomain",
+    "authentication": {
+        "kind": "ApiKey",
+        "valueMappings": [
+            {
+                "authenticationKey": "ApiKey",
+                "outputType": "Header",
+                "outputKey": "X-API-KEY"
+            }
+        ]
+    }
+}
