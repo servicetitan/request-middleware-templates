@@ -2,8 +2,8 @@
   "method": "POST",
   "headers": {
     {%- for header in source.headers -%}
-      "{{header.Key}}": "{{header.Value | replace: "\\", "\\\\" | replace: '"', '\\"' }}",
-    {%- endfor %}
+      {{ header | as_header }},
+    {%- endfor -%}
       "Content-Type":"application/json"
   },
   "body": {
