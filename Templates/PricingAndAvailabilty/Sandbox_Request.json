@@ -1,0 +1,20 @@
+{
+  "accountId": "<account_id>",
+  "subAccountId": "<sub_account_id>",
+  "branchId": "<branch_id>",
+  "customIdentifierFields": {
+    "postalCode": "<postal_code>"
+  },
+  "items": [
+    {
+      "itemId": "<item_id1>",
+      "quantity": 1,
+      "skuType": "{{skuTypeMaterial}}"
+    },
+    {
+      "itemId": "<item_id2>",
+      "quantity": 1,
+      "skuType": "{{skuTypeEquipment}}"
+    }
+  ]
+}
