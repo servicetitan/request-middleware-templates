@@ -1,0 +1,6 @@
+{
+    "accountId": "<account_id>",
+    "customIdentifierFields": {
+      "postalCode": "<postal_code>"
+    }
+  }
