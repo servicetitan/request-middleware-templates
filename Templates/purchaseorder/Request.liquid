@@ -1,0 +1,62 @@
+{
+  "method": "POST",
+  "headers": {
+    {%- for header in source.headers -%}
+      {{ header | as_header }},
+    {%- endfor -%}
+      "Content-Type":"application/json"
+  },
+  "body": {
+    "purchaseOrder": {
+      "AccountId": "{{ source.body.purchaseOrder.accountId }}",
+      "PurchaseOrderNumber": "{{ source.body.purchaseOrder.name }}",
+      "DateDue": "{{ source.body.purchaseOrder.requiredOn }}",
+      "CreationDate": "{{ source.body.purchaseOrder.date }}",
+      "CreatedBy": "{{ source.body.purchaseOrder.createdBy }}",
+      "ShippingAmount": {{ source.body.purchaseOrder.shippingAmount}},
+      "TaxAmount": {{ source.body.purchaseOrder.tax.tax}},
+      "Total": {{ source.body.purchaseOrder.total}},
+      "BuyingGroupName": "{{ source.body.purchaseOrder.buyingGroupName }}",
+      "PricingGroup": "{{ source.body.purchaseOrder.pricingGroup }}",
+      "InventoryLocation": "{{ source.body.purchaseOrder.inventoryLocation }}",
+      "ShipToDescription": "{{ source.body.purchaseOrder.shipToDescription }}",
+      "ShipToAddress": {
+          "Street": "{{ source.body.purchaseOrder.shipToAddressDto.street }}",
+          "Unit": "{{ source.body.purchaseOrder.shipToAddressDto.unit }}",
+          "City": "{{ source.body.purchaseOrder.shipToAddressDto.city }}",
+          "State": "{{ source.body.purchaseOrder.shipToAddressDto.state }}",
+          "PostalCode": "{{ source.body.purchaseOrder.shipToAddressDto.postalCode }}",
+          "Country": "{{ source.body.purchaseOrder.shipToAddressDto.country }}"
+      },
+      "CustomerDetail": {
+          "Name": "{{ source.body.purchaseOrder.customer.name }}",
+          "PostalCode": "{{ source.body.purchaseOrder.customer.identifiers.postalCode }}",
+          "TechnicianName": "{{ source.body.purchaseOrder.customer.technicianName }}",
+          "ContactEmployeeName": "{{ source.body.purchaseOrder.customer.contactEmployeeName }}",
+          "ContactEmployeeId": "{{ source.body.purchaseOrder.customer.contactEmployeeId }}",
+          "ContactEmployeeOfficePhone": "{{ source.body.purchaseOrder.customer.contactEmployeeOfficePhone }}",
+          "ContactEmployeeMobilePhone": "{{ source.body.purchaseOrder.customer.contactEmployeeMobilePhone }}",
+          "ContactEmployeeEmail": "{{ source.body.purchaseOrder.customer.contactEmployeeEmail }}"
+      },
+      "Vendor": {
+          "Name": "{{ source.body.purchaseOrder.vendor.name }}",
+          "Memo": "{{ source.body.purchaseOrder.vendor.memo }}",
+          "SubAccountId": "{{ source.body.purchaseOrder.vendor.subAccountId }}",
+          "SubAccountName": "{{ source.body.purchaseOrder.vendor.subAccountName }}",
+          "BranchId": "{{ source.body.purchaseOrder.vendor.branchId }}",
+      },
+      "PurchaseOrderLineItems": [
+        {%- for item in source.body.purchaseOrder.items -%}
+          {
+            "PartNumber": "{{item.vendorPartNumber }}",
+            "Description": "{{item.description }}",
+            "Quantity": {{item.quantity}},
+            "Cost": {{item.unitCost}},
+            "TechnicianName": "{{item.technicianName }}"
+          } {%- unless forloop.last -%},
+        {%- endunless -%}
+        {%- endfor %}
+      ]
+    }
+  }
+}
