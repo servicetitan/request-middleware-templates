@@ -13,12 +13,13 @@
                 "accountId": "{{ Item.AccountId }}",
                 "subAccountId": "{{ Item.SubAccountId }}",
                 "itemId": "{{ Item.ItemId }}",
+                "stockLevel": "{{ Item.Quantity }}",
                 "costs": [
                     {
                         "cost": {{ Item.Cost }},
                         "quantity": {{ Item.Quantity }}
                     }
-                ]
+                ],
             } {%- unless forloop.last -%},
               {%- endunless -%}
           {%- endfor %}
