@@ -1,14 +1,13 @@
 {
     "statusCode": {{source.statusCode}},
     "headers": {
-      {%- for header in source.headers -%}
-        "{{header.Key}}": "{{header.Value  | replace: "\\", "\\\\" | replace: """, "\\"" }}" {%- unless forloop.last -%},
-      {%- endunless -%}
-      {%- endfor %}
+        {%- for header in source.headers -%}
+        {{ header | as_header }} {%- forloop_delimiter %}
+        {%- endfor -%}
     },
     "body": {
         "branches": [
-          {%- for Branch in source.body.Branches -%}
+            {%- for Branch in source.body.Branches -%}
             {
                 "branchId": "{{ Branch.BranchId }}",
                 "branchName": "{{ Branch.BranchName }}",
@@ -23,9 +22,8 @@
                     "postalCode": "{{ Branch.PostalCode }}",
                     "country": "{{ Branch.Country }}"
                 }
-            } {%- unless forloop.last -%},
-              {%- endunless -%}
-          {%- endfor %}
+            } {%- forloop_delimiter %}
+            {%- endfor -%}
         ],
         "success": true,
         "errorCode": 0,

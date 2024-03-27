@@ -1,13 +1,14 @@
 {
-  "method": "POST",
-  "headers": {
-    {%- for header in source.headers -%}
-      {{ header | as_header }},
-    {%- endfor -%}
-      "Content-Type":"application/json"
-  },
-  "body": {
-      "AccountId": "{{ source.body.accountId }}",
-      "PostalCode": "{{ source.body.postalCode }}"
-  }
+    "method": "POST",
+    "url": "{{ config.baseUrl | append_url: config.url }}",
+    "headers": {
+        {%- for header in source.headers -%}
+        {{ header | as_header }},
+        {%- endfor -%}
+        "Content-Type":"application/json"
+    },
+    "body": {
+        "AccountId": "{{ source.body.accountId }}",
+        "PostalCode": "{{ source.body.postalCode }}"
+    }
 }
