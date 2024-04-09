@@ -1,5 +1,6 @@
 {
     "method": "POST",
+    "url": "{{ config.baseUrl | append_url: config.url }}",
     "headers": {
         {%- for header in source.headers -%}
         {{ header | as_header }},
