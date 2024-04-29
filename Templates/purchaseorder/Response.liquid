@@ -1,10 +1,9 @@
 {
     "statusCode": {{source.statusCode}},
     "headers": {
-      {%- for header in source.headers -%}
-        "{{header.Key}}": "{{header.Value  | replace: "\\", "\\\\" | replace: """, "\\"" }}" {%- unless forloop.last -%},
-      {%- endunless -%}
-      {%- endfor %}
+        {%- for header in source.headers -%}
+        {{ header | as_header }} {%- forloop_delimiter %}
+        {%- endfor -%}
     },
     "body": {
         "orderNumber": "{{ source.body.OrderNumber }}",
