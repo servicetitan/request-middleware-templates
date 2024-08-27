@@ -6,20 +6,22 @@
         {%- endfor -%}
     },
     "body": {
-        "accountId": "{{ source.body.AccountId }}",
-        "name": "{{ source.body.Name }}",
-        "postalCode": "{{ source.body.PostalCode }}",
-        "pricingGroup": "{{ source.body.PricingGroup }}",
-        "includeAccount": true,
-        "accounts": [
-            {%- for Account in source.body.Accounts -%}
-            {
-                "subAccountId": "{{ Account.SubAccountId }}",
-                "name": "{{ Account.Name }}",
-                "postalCode": "{{ Account.PostalCode }}"
-            } {%- forloop_delimiter %}
-            {%- endfor -%}
-        ],
+        "account": {
+            "accountId": "{{ source.body.AccountId }}",
+            "name": "{{ source.body.Name }}",
+            "postalCode": "{{ source.body.PostalCode }}",
+            "pricingGroup": "{{ source.body.PricingGroup }}",
+            "includeAccount": true,
+            "accounts": [
+                {%- for Account in source.body.Accounts -%}
+                {
+                    "subAccountId": "{{ Account.SubAccountId }}",
+                    "name": "{{ Account.Name }}",
+                    "postalCode": "{{ Account.PostalCode }}"
+                } {%- forloop_delimiter %}
+                {%- endfor -%}
+            ]
+        },
         "success": true,
         "errorCode": 0,
         "errorMessage": ""
