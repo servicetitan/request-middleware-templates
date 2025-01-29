@@ -3,10 +3,10 @@
     "url": "{{ config.baseUrl | append_url: config.url }}",
     "headers": {
         {%- for header in source.headers -%}
-        {{ header | as_header }} {%- forloop_delimiter %}
+        {{ header | as_header }}{%- forloop_delimiter %}
         {%- endfor -%}
     },
     "parameters": {
         "postalCode": "{{ source.body.postalCode }}"
-    },
+    }
 }
