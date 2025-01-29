@@ -12,7 +12,6 @@
             {
                 "branchId": "{{ Branch.BranchId }}",
                 "branchName": "{{ Branch.BranchName }}",
-                "pricingGroup": "{{ Branch.PricingGroup }}",
                 "phoneNumber": "{{ Branch.PhoneNumber }}",
                 "contact": "{{ Branch.Contact }}",
                 "address": {
@@ -23,7 +22,7 @@
                     "postalCode": "{{ Branch.PostalCode }}",
                     "country": "{{ Branch.Country }}"
                 }
-            } {%- forloop_delimiter %}
+            }{%- forloop_delimiter %}
             {%- endfor -%}
         ],
         "success": true,
