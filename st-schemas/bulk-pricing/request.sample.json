@@ -1,0 +1,17 @@
+{
+  "subAccountId": "subAccountId",
+  "branchId": "branchId",
+  "items": [
+    {
+      "itemId": "itemId",
+      "quantity": 0.0,
+      "skuType": "skuType",
+      "customFields": {},
+      "catalogData": null
+    }
+  ],
+  "accountId": "accountId",
+  "customIdentifierFields": {},
+  "vendorId": "vendorId",
+  "callbackData": {}
+}

@@ -1,0 +1,262 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "stock-level.response",
+  "type": "object",
+  "description": "Response from the vendor for the stock level request",
+  "additionalProperties": false,
+  "properties": {
+    "errorCode": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Error code returned from the vendor's API, if any"
+    },
+    "callBackInfo": {
+      "description": "Optional callback information to be used in the next request. Only present if a callback is needed",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/CallbackInfo"
+        }
+      ]
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "errorKind": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "message": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "errorMessage": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "accountId": {
+      "type": "string",
+      "description": "Customer's vendor account Id"
+    },
+    "branchId": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "The identifier for the branch that the stock level information is for"
+    },
+    "stockLevels": {
+      "type": "array",
+      "description": "List of items and their stock levels",
+      "items": {
+        "$ref": "#/definitions/StockLevelDto"
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "default": "./stock-level.response.schema.json"
+    }
+  },
+  "definitions": {
+    "CallbackInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "shouldCallback": {
+          "type": "boolean",
+          "description": "Controls whether another request should be made"
+        },
+        "values": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Generic object to be passed to the next request\nUsed for passing data between chained requests",
+          "additionalProperties": {}
+        }
+      }
+    },
+    "StockLevelDto": {
+      "type": "object",
+      "description": "Stock level information for specific item from a vendor",
+      "additionalProperties": false,
+      "properties": {
+        "itemId": {
+          "type": "string",
+          "description": "Identifier for the item"
+        },
+        "stockLevel": {
+          "type": [
+            "null",
+            "number"
+          ],
+          "description": "Stock level of the item. Use this when stock levels are known, but no special conditions exist for the availability of the item.\nCannot be used with Availability.",
+          "format": "decimal",
+          "x-deprecated": true,
+          "x-deprecatedMessage": "Use Availability instead"
+        },
+        "availability": {
+          "type": "array",
+          "description": "Specifies detailed availability for the item",
+          "items": {
+            "$ref": "#/definitions/AvailabilityDto"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "allOf": [
+                {
+                  "required": [
+                    "availability"
+                  ]
+                },
+                {
+                  "not": {
+                    "anyOf": [
+                      {
+                        "required": [
+                          "stockLevel"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "required": [
+                    "stockLevel"
+                  ]
+                },
+                {
+                  "not": {
+                    "anyOf": [
+                      {
+                        "required": [
+                          "availability"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "anyOf": [
+            {
+              "required": [
+                "availability"
+              ]
+            },
+            {
+              "required": [
+                "stockLevel"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "AvailabilityDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "itemCount": {
+          "type": [
+            "null",
+            "number"
+          ],
+          "description": "Available item count. Use this when stock levels are known, but no special conditions exist for the availability of the item\nThis should be used with Neutral and Negative dispositions. Not required for Positive disposition",
+          "format": "decimal"
+        },
+        "disposition": {
+          "description": "Disposition of the availability of the requested item\nControls how the stock level response is interpreted",
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/StatusDisposition"
+            }
+          ]
+        },
+        "status": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Status message to be shown to the user if the item has a negative disposition e.g. \"Backordered\", \"Discontinued\""
+        },
+        "message": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Custom message to be shown to the user for an item with a Negative or Neutral disposition"
+        },
+        "startingDate": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Date that an item with a Negative disposition is expected to be available",
+          "format": "date-time"
+        }
+      },
+      "allOf": [
+        {
+          "anyOf": [
+            {
+              "required": [
+                "itemCount"
+              ]
+            },
+            {
+              "required": [
+                "status"
+              ]
+            },
+            {
+              "required": [
+                "disposition"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "StatusDisposition": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Unspecified",
+        "Negative",
+        "Neutral",
+        "Positive"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  }
+}

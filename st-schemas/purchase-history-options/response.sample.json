@@ -1,0 +1,27 @@
+{
+  "errorCode": "errorCode",
+  "callBackInfo": null,
+  "success": false,
+  "errorKind": "errorKind",
+  "message": "message",
+  "errorMessage": "errorMessage",
+  "options": [
+    {
+      "id": "id",
+      "name": "name",
+      "subOptions": [
+        {
+          "id": "id",
+          "name": "name",
+          "values": [
+            {
+              "id": "id",
+              "name": "name"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "$schema": "./purchase-history-options.response.schema.json"
+}

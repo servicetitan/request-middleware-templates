@@ -1,0 +1,24 @@
+{
+  "errorCode": "errorCode",
+  "callBackInfo": null,
+  "success": false,
+  "errorKind": "errorKind",
+  "message": "message",
+  "errorMessage": "errorMessage",
+  "accountId": "accountId",
+  "shippingAddresses": [
+    {
+      "shippingAddressId": "shippingAddressId",
+      "name": "name",
+      "street": "street",
+      "unit": "unit",
+      "city": "city",
+      "state": "state",
+      "postalCode": "postalCode",
+      "country": "country",
+      "defaultAddress": false,
+      "isVendorAddress": false
+    }
+  ],
+  "$schema": "./shippingaddresses.response.schema.json"
+}
