@@ -1,0 +1,181 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "branch-pricing.response",
+  "type": "object",
+  "description": "Response from the vendor for the branch pricing request",
+  "additionalProperties": false,
+  "properties": {
+    "errorCode": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Error code returned from the vendor's API, if any"
+    },
+    "callBackInfo": {
+      "description": "Optional callback information to be used in the next request. Only present if a callback is needed",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/CallbackInfo"
+        }
+      ]
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "errorKind": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "message": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "errorMessage": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "vendorBranchCosts": {
+      "type": "array",
+      "description": "List of items and prices for each branch",
+      "items": {
+        "$ref": "#/definitions/VendorBranchCostDto"
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "default": "./branch-pricing.response.schema.json"
+    }
+  },
+  "definitions": {
+    "CallbackInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "shouldCallback": {
+          "type": "boolean",
+          "description": "Controls whether another request should be made"
+        },
+        "values": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Generic object to be passed to the next request\nUsed for passing data between chained requests",
+          "additionalProperties": {}
+        }
+      }
+    },
+    "VendorBranchCostDto": {
+      "type": "object",
+      "description": "Object to represent an item and its cost",
+      "additionalProperties": false,
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "AccountId associated with Item Cost"
+        },
+        "subAccountId": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "SubAccountId associated with Item Cost"
+        },
+        "itemId": {
+          "type": "string",
+          "description": "Vendor's identifier for the item"
+        },
+        "branchItemCosts": {
+          "type": "array",
+          "description": "List of branches and prices for each item",
+          "items": {
+            "$ref": "#/definitions/VendorBranchItemCostDto"
+          }
+        }
+      }
+    },
+    "VendorBranchItemCostDto": {
+      "type": "object",
+      "description": "Object to represent an item and its cost for a branch",
+      "additionalProperties": false,
+      "properties": {
+        "branchId": {
+          "type": "string",
+          "description": "List of items and prices"
+        },
+        "stockLevel": {
+          "type": [
+            "null",
+            "number"
+          ],
+          "description": "Stock level of the item",
+          "format": "decimal"
+        },
+        "costs": {
+          "type": "array",
+          "description": "List of costs for the item",
+          "items": {
+            "$ref": "#/definitions/CostDto"
+          }
+        }
+      }
+    },
+    "CostDto": {
+      "type": "object",
+      "description": "Object to represent an item's cost",
+      "additionalProperties": false,
+      "required": [
+        "cost",
+        "quantity"
+      ],
+      "properties": {
+        "cost": {
+          "type": "number",
+          "description": "Cost of the item",
+          "format": "decimal"
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Quantity of the item to purchase to obtain the cost",
+          "format": "decimal",
+          "maximum": 2147483647.0,
+          "minimum": 0.0
+        },
+        "skipStoringCost": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Indicated whether a cost should be persisted for an item"
+        },
+        "customFields": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "List of custom fields for the item from pricing request source (e.g. Purchase Order)",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "message": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Error Message if supplier provides"
+        }
+      }
+    }
+  }
+}

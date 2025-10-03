@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "alerts.response",
+  "type": "object",
+  "description": "Response from the vendor for the Supplier Alerts Request",
+  "additionalProperties": false,
+  "properties": {
+    "errorCode": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Error code returned from the vendor's API, if any"
+    },
+    "callBackInfo": {
+      "description": "Optional callback information to be used in the next request. Only present if a callback is needed",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/CallbackInfo"
+        }
+      ]
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "errorKind": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "message": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "errorMessage": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "alerts": {
+      "type": "array",
+      "description": "A list of alerts to be displayed to the user for the given account",
+      "items": {
+        "$ref": "#/definitions/SupplierAlertDto"
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "default": "./alerts.response.schema.json"
+    }
+  },
+  "definitions": {
+    "CallbackInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "shouldCallback": {
+          "type": "boolean",
+          "description": "Controls whether another request should be made"
+        },
+        "values": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Generic object to be passed to the next request\nUsed for passing data between chained requests",
+          "additionalProperties": {}
+        }
+      }
+    },
+    "SupplierAlertDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "severity",
+        "appliesTo",
+        "message"
+      ],
+      "properties": {
+        "severity": {
+          "type": "string",
+          "description": "Severity of alert (Warning, Error, Info)",
+          "minLength": 1
+        },
+        "appliesTo": {
+          "type": "string",
+          "description": "Area that alert applies to (e.g. Purchase Orders)",
+          "minLength": 1
+        },
+        "title": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Title for the alert that will be displayed to the user"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message that will be displayed to the user",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

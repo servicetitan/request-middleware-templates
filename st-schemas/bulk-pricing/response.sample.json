@@ -1,0 +1,33 @@
+{
+  "errorCode": "errorCode",
+  "callBackInfo": null,
+  "success": false,
+  "errorKind": "errorKind",
+  "message": "message",
+  "errorMessage": "errorMessage",
+  "vendorCosts": [
+    {
+      "itemId": "itemId",
+      "costs": [
+        {
+          "cost": 0.0,
+          "quantity": 0.0,
+          "skipStoringCost": false,
+          "customFields": {},
+          "message": "message"
+        }
+      ],
+      "stockLevel": 0,
+      "availability": [
+        {
+          "itemCount": 0.0,
+          "disposition": null,
+          "status": "status",
+          "message": "message",
+          "startingDate": "2025-10-03T20:31:27.5312024+00:00"
+        }
+      ]
+    }
+  ],
+  "$schema": "./bulk-pricing.response.schema.json"
+}

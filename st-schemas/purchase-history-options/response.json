@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "purchase-history-options.response",
+  "type": "object",
+  "description": "Response for retrieving vendor purchase history import options",
+  "additionalProperties": false,
+  "properties": {
+    "errorCode": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Error code returned from the vendor's API, if any"
+    },
+    "callBackInfo": {
+      "description": "Optional callback information to be used in the next request. Only present if a callback is needed",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/CallbackInfo"
+        }
+      ]
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "errorKind": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "message": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "errorMessage": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "options": {
+      "type": "array",
+      "description": "List of available purchase history import options",
+      "items": {
+        "$ref": "#/definitions/VendorPurchaseHistoryOptionDto"
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "default": "./purchase-history-options.response.schema.json"
+    }
+  },
+  "definitions": {
+    "CallbackInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "shouldCallback": {
+          "type": "boolean",
+          "description": "Controls whether another request should be made"
+        },
+        "values": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Generic object to be passed to the next request\nUsed for passing data between chained requests",
+          "additionalProperties": {}
+        }
+      }
+    },
+    "VendorPurchaseHistoryOptionDto": {
+      "type": "object",
+      "description": "Object to represent a type of purchase history option on a supplier's API",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identifier for the purchase history option to be used in purchase history request"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the purchase history option i.e. template, recent history, etc."
+        },
+        "subOptions": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "List of values for the purchase history option i.e. templates",
+          "items": {
+            "$ref": "#/definitions/VendorPurchaseHistorySubOptionDto"
+          }
+        }
+      }
+    },
+    "VendorPurchaseHistorySubOptionDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Idenitifer for the sub option to be used in purchase history request in Values Collection. Presented to user in a dropdown\ne.g. templatId, dateRange, etc."
+        },
+        "name": {
+          "type": "string",
+          "description": "Option display name"
+        },
+        "values": {
+          "type": "array",
+          "description": "The available values to select for the sub option\ne.g. templateId, dateRange, etc.",
+          "items": {
+            "$ref": "#/definitions/NamedValueDto"
+          }
+        }
+      }
+    },
+    "NamedValueDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
