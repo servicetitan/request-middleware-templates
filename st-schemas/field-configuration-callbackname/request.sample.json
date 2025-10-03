@@ -1,0 +1,44 @@
+{
+  "accountId": "accountId",
+  "customIdentifierFields": {},
+  "vendorId": "vendorId",
+  "callbackData": {},
+  "callbackName": "callbackName",
+  "purchaseOrder": {
+    "supplierBranchId": "supplierBranchId",
+    "dateRequired": "2025-10-03T16:52:42.8937739+00:00",
+    "amount": 0.0,
+    "shipTo": null,
+    "isVendorCounterPickup": false,
+    "lineItems": [
+      {
+        "name": "name",
+        "quantity": 0.0,
+        "cost": 0.0,
+        "vendorPartNumber": "vendorPartNumber",
+        "externalId": "externalId",
+        "skuCatalogId": "skuCatalogId",
+        "chargeable": false,
+        "inventoryLocation": "inventoryLocation",
+        "dynamicLineItemFields": [
+          {
+            "id": 0,
+            "internalName": "internalName",
+            "isRequired": false,
+            "value": "value",
+            "type": "type"
+          }
+        ]
+      }
+    ],
+    "dynamicHeaderFields": [
+      {
+        "id": 0,
+        "internalName": "internalName",
+        "isRequired": false,
+        "value": "value",
+        "type": "type"
+      }
+    ]
+  }
+}

@@ -1,0 +1,3 @@
+Program started at 10/03/2025 16:52:41
+Working directory: /home/runner/work/supply-chain/supply-chain
+Full output path: /home/runner/work/supply-chain/supply-chain/artifacts/st-schemas

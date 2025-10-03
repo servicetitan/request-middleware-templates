@@ -1,0 +1,26 @@
+{
+  "errorCode": "errorCode",
+  "callBackInfo": null,
+  "success": false,
+  "errorKind": "errorKind",
+  "message": "message",
+  "errorMessage": "errorMessage",
+  "accountId": "accountId",
+  "branchId": "branchId",
+  "stockLevels": [
+    {
+      "itemId": "itemId",
+      "stockLevel": 0.0,
+      "availability": [
+        {
+          "itemCount": 0.0,
+          "disposition": null,
+          "status": "status",
+          "message": "message",
+          "startingDate": "2025-10-03T16:52:42.7355382+00:00"
+        }
+      ]
+    }
+  ],
+  "$schema": "./stock-level.response.schema.json"
+}

@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "purchaseorder.response",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "errorCode": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Error code returned from the vendor's API, if any"
+    },
+    "callBackInfo": {
+      "description": "Optional callback information to be used in the next request. Only present if a callback is needed",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/CallbackInfo"
+        }
+      ]
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "errorKind": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "message": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "errorMessage": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "status": {
+      "description": "Status of the purchase order",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/PurchaseOrderStatus"
+        }
+      ]
+    },
+    "orderReferenceNumber": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Vendor reference number or identifier for PO\nThis number is shown to the user in the purchase order UI when a purchase order is Accepted"
+    },
+    "reason": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Reason for rejection. Reason is required when status is Rejected"
+    },
+    "customIdentifierFields": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "Identifiers to send back to reference the purchase order on subsequent status calls",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "default": "./purchaseorder.response.schema.json"
+    }
+  },
+  "definitions": {
+    "CallbackInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "shouldCallback": {
+          "type": "boolean",
+          "description": "Controls whether another request should be made"
+        },
+        "values": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Generic object to be passed to the next request\nUsed for passing data between chained requests",
+          "additionalProperties": {}
+        }
+      }
+    },
+    "PurchaseOrderStatus": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Unknown",
+        "Accepted",
+        "Rejected",
+        "Received"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  }
+}

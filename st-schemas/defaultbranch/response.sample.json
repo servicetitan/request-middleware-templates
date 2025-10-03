@@ -1,0 +1,10 @@
+{
+  "errorCode": "errorCode",
+  "callBackInfo": null,
+  "success": false,
+  "errorKind": "errorKind",
+  "message": "message",
+  "errorMessage": "errorMessage",
+  "defaultBranch": null,
+  "$schema": "./defaultbranch.response.schema.json"
+}

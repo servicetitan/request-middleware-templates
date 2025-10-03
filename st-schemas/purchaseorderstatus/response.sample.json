@@ -1,0 +1,83 @@
+{
+  "errorCode": "errorCode",
+  "callBackInfo": null,
+  "success": false,
+  "errorKind": "errorKind",
+  "message": "message",
+  "errorMessage": "errorMessage",
+  "purchaseOrder": {
+    "accountId": "accountId",
+    "requestId": "requestId",
+    "confirmationNumber": "confirmationNumber",
+    "orderNumber": "orderNumber",
+    "createdBy": "2025-10-03T16:52:42.7140289+00:00",
+    "orderType": "orderType",
+    "deliveryService": "deliveryService",
+    "orderReferenceNumber": "orderReferenceNumber",
+    "shipmentReferenceNumber": "shipmentReferenceNumber",
+    "status": "status",
+    "currency": "currency"
+  },
+  "dates": null,
+  "deliveryAppointments": [
+    {
+      "instructionsTypeCode": "instructionsTypeCode",
+      "instructions": "instructions",
+      "fromTime": "2025-10-03T16:52:42.7141069+00:00",
+      "toTime": "2025-10-03T16:52:42.7141134+00:00",
+      "timeZoneCode": "timeZoneCode"
+    }
+  ],
+  "comments": "comments",
+  "orderAmount": {
+    "subTotal": 0.0,
+    "tax": 0.0,
+    "total": 0.0
+  },
+  "purchaseOrderItems": [
+    {
+      "vendorPartNumber": "vendorPartNumber",
+      "itemNumber": "itemNumber",
+      "orderedQty": {
+        "amount": 0.0,
+        "unitOfMeasureCode": "unitOfMeasureCode",
+        "unitOfMeasure": "unitOfMeasure"
+      },
+      "unitPrice": {
+        "value": 0.0,
+        "unitOfMeasureCode": "unitOfMeasureCode",
+        "unitOfMeasure": "unitOfMeasure"
+      },
+      "amount": 0.0
+    }
+  ],
+  "shipments": [
+    {
+      "shipmentNumber": "shipmentNumber",
+      "status": "status",
+      "total": 0.0,
+      "deliveryRequestedOn": "2025-10-03T16:52:42.7142390+00:00",
+      "deliveredOn": "2025-10-03T16:52:42.7142439+00:00",
+      "invoicedOn": "2025-10-03T16:52:42.7142472+00:00",
+      "lines": [
+        {
+          "id": "id",
+          "orderLineId": 0.0,
+          "itemNumber": "itemNumber",
+          "orderedQty": {
+            "amount": 0.0,
+            "unitOfMeasureCode": "unitOfMeasureCode",
+            "unitOfMeasure": "unitOfMeasure"
+          },
+          "unitPrice": {
+            "value": 0.0,
+            "unitOfMeasureCode": "unitOfMeasureCode",
+            "unitOfMeasure": "unitOfMeasure"
+          },
+          "amount": 0.0
+        }
+      ]
+    }
+  ],
+  "$schema": "./purchaseorderstatus.response.schema.json"
+}

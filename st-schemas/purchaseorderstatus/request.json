@@ -1,0 +1,860 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "purchaseorderstatus.request",
+  "type": "object",
+  "description": "Checks the status of a previously sent purchase order.",
+  "additionalProperties": false,
+  "properties": {
+    "vendorId": {
+      "type": "string"
+    },
+    "callbackData": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "Generic data that is specified by the previous request's CallbackInfo",
+      "additionalProperties": {}
+    },
+    "vendorCustomerId": {
+      "type": "string",
+      "description": "The vendor's customer ID associated with the purchase order. Maps to the AccountId of an integration"
+    },
+    "purchaseOrderNumber": {
+      "type": "string",
+      "description": "The ServiceTitan identifier for the purchase order"
+    },
+    "purchaseOrder": {
+      "description": "Data for the purchase order to check status for",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/PurchaseOrderDto"
+        }
+      ]
+    },
+    "customIdentifierFields": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "A collection of identifiers specific to the Vendor.\nThese were either previously returned by the Vendor, or configured by the user based on vendor-specific inputs",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "definitions": {
+    "PurchaseOrderDto": {
+      "type": "object",
+      "description": "Public API for Purchase Order",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Purchase Order internal Id",
+          "format": "int32"
+        },
+        "accountId": {
+          "type": "string",
+          "description": "Customer's vendor account Id"
+        },
+        "number": {
+          "type": "string",
+          "description": "Purchase order number"
+        },
+        "orderReferenceNumber": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Shipping description"
+        },
+        "requiredOn": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Date when the purchase order items are required",
+          "format": "date-time"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date the purchase order was created in ST main system",
+          "format": "date-time"
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "Creator's name"
+        },
+        "tax": {
+          "type": "number",
+          "description": "Tax",
+          "format": "decimal"
+        },
+        "shippingAmount": {
+          "type": "number",
+          "description": "Shipping amount",
+          "format": "decimal"
+        },
+        "total": {
+          "type": "number",
+          "description": "Purchase order total (items total + shipping + tax)",
+          "format": "decimal"
+        },
+        "buyingGroupName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Name that vendor recognizes ST by"
+        },
+        "pricingGroup": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Customer's pricing group e.g. MainStoreCode"
+        },
+        "inventoryLocation": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Inventory location"
+        },
+        "shipToDescription": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Shipping description"
+        },
+        "isVendorCounterPickup": {
+          "type": "boolean",
+          "description": "Vendor Counter pickup"
+        },
+        "shipToAddressDto": {
+          "description": "Shipping address",
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ShippingAddressDto"
+            }
+          ]
+        },
+        "customer": {
+          "description": "Customer information",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/CustomerInfoDto"
+            }
+          ]
+        },
+        "vendor": {
+          "description": "Vendor information",
+          "oneOf": [
+            {
+              "$ref": "#/definitions/VendorInfoDto"
+            }
+          ]
+        },
+        "job": {
+          "description": "ST Job information",
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/JobInfoDto"
+            }
+          ]
+        },
+        "businessUnit": {
+          "description": "ST Business Unit information",
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/BusinessUnitInfoDto"
+            }
+          ]
+        },
+        "items": {
+          "type": "array",
+          "description": "Purchase order items",
+          "items": {
+            "$ref": "#/definitions/PurchaseOrderItemDto"
+          }
+        },
+        "dynamicHeaderFields": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Purchase order's dynamic header fields",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ShippingAddressDto": {
+      "type": "object",
+      "description": "Shipping Address Information",
+      "additionalProperties": false,
+      "properties": {
+        "street": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Street"
+        },
+        "unit": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Unit"
+        },
+        "city": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "City"
+        },
+        "state": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "State"
+        },
+        "postalCode": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Postal code"
+        },
+        "country": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Country"
+        },
+        "addressId": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Supplier AddressId"
+        }
+      }
+    },
+    "CustomerInfoDto": {
+      "type": "object",
+      "description": "Tenant Information for Purchase Order",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Customer name"
+        },
+        "identifiers": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Fields that Vendor uses to identify the customer",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "technicianName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Technician name"
+        },
+        "contactEmployeeName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Customer's contact employee name for vendor"
+        },
+        "contactEmployeeId": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Id that the vendor assigns to the contractor employee"
+        },
+        "contactEmployeeOfficePhone": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Contact employee office phone"
+        },
+        "contactEmployeeMobilePhone": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Contact employee mobile phone"
+        },
+        "contactEmployeeEmail": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Contact employee email"
+        },
+        "contactEmployeeUserName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Contact employee username"
+        }
+      }
+    },
+    "VendorInfoDto": {
+      "type": "object",
+      "description": "Vendor Information",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Vendor name"
+        },
+        "memo": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Vendor memo"
+        },
+        "subAccountId": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Account id given by vendor"
+        },
+        "subAccountName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Account name given by vendor"
+        },
+        "branchId": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Vendor branch Id"
+        }
+      }
+    },
+    "JobInfoDto": {
+      "type": "object",
+      "description": "ST Job Information",
+      "additionalProperties": false,
+      "properties": {
+        "jobId": {
+          "type": "string",
+          "description": "Vendor name"
+        },
+        "jobNumber": {
+          "type": "string",
+          "description": "Vendor memo"
+        }
+      }
+    },
+    "BusinessUnitInfoDto": {
+      "type": "object",
+      "description": "ST Job Information",
+      "additionalProperties": false,
+      "properties": {
+        "businessUnitId": {
+          "type": "string",
+          "description": "Vendor name"
+        },
+        "businessUnitName": {
+          "type": "string",
+          "description": "Vendor memo"
+        }
+      }
+    },
+    "PurchaseOrderItemDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vendorPartNumber": {
+          "type": "string",
+          "description": "Vendor part number for the item"
+        },
+        "externalId": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Supplier external identifier for linked item"
+        },
+        "name": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Item name"
+        },
+        "code": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Item code"
+        },
+        "description": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Item description"
+        },
+        "unitOfMeasure": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Purchasing Unit of Measure"
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Item quantity",
+          "format": "decimal"
+        },
+        "unitCost": {
+          "type": "number",
+          "description": "Item cost",
+          "format": "decimal"
+        },
+        "technicianName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Technician name"
+        },
+        "productInfo": {
+          "description": "Additional item fields",
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ProductInfoDto"
+            }
+          ]
+        },
+        "itemDynamicFields": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Item's dynamic fields",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "serviceTitan.Common.Contracts.Models.IHasCatalogData.ItemId": {
+          "type": "string"
+        },
+        "catalogData": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Product"
+            }
+          ]
+        }
+      }
+    },
+    "ProductInfoDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "model": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Item model"
+        },
+        "manufacturer": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Item manufacturer"
+        },
+        "brand": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Item brand"
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "description": "Describes a product sold by a supplier. Products can have variants within the same family.",
+      "additionalProperties": false,
+      "properties": {
+        "displayName": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "description": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "manufacturer": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "brand": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "series": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "model": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "vendorPartNumber": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "manufacturerPartNumber": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "manufacturerSuggestedRetailPrice": {
+          "type": [
+            "null",
+            "number"
+          ],
+          "format": "decimal"
+        },
+        "assets": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Asset"
+          }
+        },
+        "warranties": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Warranty"
+          }
+        },
+        "unitsOfMeasure": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "alternatives": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Alternative"
+          }
+        },
+        "additionalIdentifiers": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Identifier"
+          }
+        },
+        "specifications": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Specification"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "categoryIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdOnUtc": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "format": "date-time"
+        },
+        "modifiedOnUtc": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "format": "date-time"
+        },
+        "active": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DisplayContent": {
+      "type": "object",
+      "description": "Describes content that can be displayed to a user.\nContent can be stored as plain text, HTML, or both.",
+      "additionalProperties": false,
+      "properties": {
+        "plainText": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "The representation of the content as unformatted plain text"
+        },
+        "html": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "The representation of the content as HTML"
+        }
+      }
+    },
+    "Asset": {
+      "type": "object",
+      "description": "Describes a media asset to be displayed on a user interface",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "isPrimary": {
+          "type": "boolean"
+        },
+        "displayName": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "type": {
+          "$ref": "#/definitions/AssetType"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "AssetType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Unspecified",
+        "Image",
+        "Video",
+        "Attachment"
+      ],
+      "enum": [
+        "Unspecified",
+        "Image",
+        "Video",
+        "Attachment"
+      ]
+    },
+    "Warranty": {
+      "type": "object",
+      "description": "Describes a warranty offered on an item",
+      "additionalProperties": false,
+      "properties": {
+        "durationInMonths": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "$ref": "#/definitions/WarrantyType"
+        },
+        "description": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        }
+      }
+    },
+    "WarrantyType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Unspecified",
+        "Manufacturer",
+        "Distributor"
+      ],
+      "enum": [
+        "Unspecified",
+        "Manufacturer",
+        "Distributor"
+      ]
+    },
+    "Alternative": {
+      "type": "object",
+      "description": "Describes a relationship between two items, where one could be replaced with another for some reason",
+      "additionalProperties": false,
+      "properties": {
+        "alternativeItemId": {
+          "type": "string"
+        },
+        "alternativeReason": {
+          "$ref": "#/definitions/AlternativeReason"
+        },
+        "description": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        }
+      }
+    },
+    "AlternativeReason": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Unspecified",
+        "Superseded",
+        "Upgrade",
+        "Downgrade",
+        "Equivalent"
+      ],
+      "enum": [
+        "Unspecified",
+        "Superseded",
+        "Upgrade",
+        "Downgrade",
+        "Equivalent"
+      ]
+    },
+    "Identifier": {
+      "type": "object",
+      "description": "Describes a method to uniquely identify this item, perhaps based on a standard",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "Specification": {
+      "type": "object",
+      "description": "Describes an item's physical properties, compliance with standards.\nThese are values are used to enhance a description or provide filtering capabilities",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "stock-level.request",
+  "type": "object",
+  "description": "Request for stock level of items from vendor's api",
+  "additionalProperties": false,
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "The main account identifier for the supplier"
+    },
+    "customIdentifierFields": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "A collection of identifiers specific to the Vendor.\nThese were either previously returned by the vendor, or configured by the user based on vendor-specific inputs",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "vendorId": {
+      "type": "string"
+    },
+    "callbackData": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "Generic data that is specified by the previous request's CallbackInfo",
+      "additionalProperties": {}
+    },
+    "subAccountId": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Customer's vendor subAccount Id"
+    },
+    "branchId": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "The identifier for the branch to get the stock level for"
+    },
+    "items": {
+      "type": "array",
+      "description": "List of items to get the stock level for",
+      "items": {
+        "$ref": "#/definitions/ItemStockLevelRequestDto"
+      }
+    },
+    "shippingAddress": {
+      "description": "Shipping address to use for availability checks. Comes from an address selected on a purchase order.",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/AddressDto"
+        }
+      ]
+    },
+    "isVendorCounterPickup": {
+      "type": "boolean",
+      "description": "If true, the vendor counter pickup option was selected.\nThis signifies a will call order or vendor counter pickup from a specific branch."
+    }
+  },
+  "definitions": {
+    "ItemStockLevelRequestDto": {
+      "type": "object",
+      "description": "Item request object to specify the item and quantity for the pricing request",
+      "additionalProperties": false,
+      "properties": {
+        "itemId": {
+          "type": "string",
+          "description": "Item's identifier in the vendor's system"
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Quantity of the item for the request",
+          "format": "decimal"
+        }
+      }
+    },
+    "AddressDto": {
+      "type": "object",
+      "description": "Object to represent an address",
+      "additionalProperties": false,
+      "properties": {
+        "street": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Street"
+        },
+        "unit": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Unit"
+        },
+        "city": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "City"
+        },
+        "state": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "State"
+        },
+        "postalCode": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Postal code"
+        },
+        "country": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Country"
+        },
+        "isVendorAddress": {
+          "type": "boolean",
+          "description": "IsVendorAddress"
+        },
+        "addressId": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "AddressId"
+        }
+      }
+    }
+  }
+}
