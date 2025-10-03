@@ -1,0 +1,12 @@
+{
+  "accountId": "accountId",
+  "customIdentifierFields": {},
+  "vendorId": "vendorId",
+  "callbackData": {},
+  "subAccountId": "subAccountId",
+  "branchId": "branchId",
+  "itemIds": [
+    ""
+  ],
+  "pageNumber": 0
+}

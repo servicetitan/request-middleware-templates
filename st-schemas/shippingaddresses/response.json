@@ -1,0 +1,133 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "shippingaddresses.response",
+  "type": "object",
+  "description": "Response for retrieving shipping addresses associated with a vendor account",
+  "additionalProperties": false,
+  "properties": {
+    "errorCode": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Error code returned from the vendor's API, if any"
+    },
+    "callBackInfo": {
+      "description": "Optional callback information to be used in the next request. Only present if a callback is needed",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/CallbackInfo"
+        }
+      ]
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "errorKind": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "message": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "errorMessage": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "accountId": {
+      "type": "string",
+      "description": "Customer's vendor accountId"
+    },
+    "shippingAddresses": {
+      "type": "array",
+      "description": "Shipping addresses information from the vendor",
+      "items": {
+        "$ref": "#/definitions/VendorAccountShippingAddressDto"
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "default": "./shippingaddresses.response.schema.json"
+    }
+  },
+  "definitions": {
+    "CallbackInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "shouldCallback": {
+          "type": "boolean",
+          "description": "Controls whether another request should be made"
+        },
+        "values": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Generic object to be passed to the next request\nUsed for passing data between chained requests",
+          "additionalProperties": {}
+        }
+      }
+    },
+    "VendorAccountShippingAddressDto": {
+      "type": "object",
+      "description": "Model representing a customer's vendor account shipping addresses",
+      "additionalProperties": false,
+      "properties": {
+        "shippingAddressId": {
+          "type": "string",
+          "description": "Shipping address identifier in vendor's system"
+        },
+        "name": {
+          "type": "string",
+          "description": "Shipping address display name"
+        },
+        "street": {
+          "type": "string",
+          "description": "Street"
+        },
+        "unit": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Unit"
+        },
+        "city": {
+          "type": "string",
+          "description": "City"
+        },
+        "state": {
+          "type": "string",
+          "description": "State"
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "PostalCode"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country"
+        },
+        "defaultAddress": {
+          "type": "boolean",
+          "description": "Whether the shipping address should be considered the default address\nUsed to automatically select a ship-to address when creating a purchase order for the vendor"
+        },
+        "isVendorAddress": {
+          "type": "boolean",
+          "description": "This is default true"
+        }
+      }
+    }
+  }
+}

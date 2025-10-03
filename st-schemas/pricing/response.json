@@ -1,0 +1,292 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "pricing.response",
+  "type": "object",
+  "description": "Response from the vendor for the pricing request\nUsed in both real time pricing requests and bulk pricing requests",
+  "additionalProperties": false,
+  "properties": {
+    "errorCode": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Error code returned from the vendor's API, if any"
+    },
+    "callBackInfo": {
+      "description": "Optional callback information to be used in the next request. Only present if a callback is needed",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/CallbackInfo"
+        }
+      ]
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "errorKind": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "message": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "errorMessage": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "vendorCosts": {
+      "type": "array",
+      "description": "List of items and prices",
+      "items": {
+        "$ref": "#/definitions/VendorCostDto"
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "default": "./pricing.response.schema.json"
+    }
+  },
+  "definitions": {
+    "CallbackInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "shouldCallback": {
+          "type": "boolean",
+          "description": "Controls whether another request should be made"
+        },
+        "values": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Generic object to be passed to the next request\nUsed for passing data between chained requests",
+          "additionalProperties": {}
+        }
+      }
+    },
+    "VendorCostDto": {
+      "type": "object",
+      "description": "Object to represent an item and its list of costs",
+      "additionalProperties": false,
+      "properties": {
+        "itemId": {
+          "type": "string",
+          "description": "Vendor's identifier for the item"
+        },
+        "costs": {
+          "type": "array",
+          "description": "List of costs for the item, based on quantity breaks",
+          "items": {
+            "$ref": "#/definitions/CostDto"
+          }
+        },
+        "stockLevel": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Total stock level for the item",
+          "format": "int32"
+        },
+        "availability": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "description": "List of availability states for the item",
+          "items": {
+            "$ref": "#/definitions/AvailabilityDto"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "allOf": [
+                {
+                  "required": [
+                    "availability"
+                  ]
+                },
+                {
+                  "not": {
+                    "anyOf": [
+                      {
+                        "required": [
+                          "stockLevel"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "required": [
+                    "stockLevel"
+                  ]
+                },
+                {
+                  "not": {
+                    "anyOf": [
+                      {
+                        "required": [
+                          "availability"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "CostDto": {
+      "type": "object",
+      "description": "Object to represent an item's cost",
+      "additionalProperties": false,
+      "required": [
+        "cost",
+        "quantity"
+      ],
+      "properties": {
+        "cost": {
+          "type": "number",
+          "description": "Cost of the item",
+          "format": "decimal"
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Quantity of the item to purchase to obtain the cost",
+          "format": "decimal",
+          "maximum": 2147483647.0,
+          "minimum": 0.0
+        },
+        "skipStoringCost": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "Indicated whether a cost should be persisted for an item"
+        },
+        "customFields": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "List of custom fields for the item from pricing request source (e.g. Purchase Order)",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "message": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Error Message if supplier provides"
+        }
+      }
+    },
+    "AvailabilityDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "itemCount": {
+          "type": [
+            "null",
+            "number"
+          ],
+          "description": "Available item count. Use this when stock levels are known, but no special conditions exist for the availability of the item\nThis should be used with Neutral and Negative dispositions. Not required for Positive disposition",
+          "format": "decimal"
+        },
+        "disposition": {
+          "description": "Disposition of the availability of the requested item\nControls how the stock level response is interpreted",
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/StatusDisposition"
+            }
+          ]
+        },
+        "status": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Status message to be shown to the user if the item has a negative disposition e.g. \"Backordered\", \"Discontinued\""
+        },
+        "message": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Custom message to be shown to the user for an item with a Negative or Neutral disposition"
+        },
+        "startingDate": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Date that an item with a Negative disposition is expected to be available",
+          "format": "date-time"
+        }
+      },
+      "allOf": [
+        {
+          "anyOf": [
+            {
+              "required": [
+                "itemCount"
+              ]
+            },
+            {
+              "required": [
+                "status"
+              ]
+            },
+            {
+              "required": [
+                "disposition"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "StatusDisposition": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Unspecified",
+        "Negative",
+        "Neutral",
+        "Positive"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "errorCode": "errorCode",
+  "callBackInfo": null,
+  "success": false,
+  "errorKind": "errorKind",
+  "message": "message",
+  "errorMessage": "errorMessage",
+  "subAccounts": [
+    {
+      "subAccountId": "subAccountId",
+      "name": "name",
+      "postalCode": "postalCode",
+      "customFields": {}
+    }
+  ],
+  "$schema": "./subaccount.response.schema.json"
+}

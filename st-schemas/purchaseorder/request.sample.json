@@ -1,0 +1,79 @@
+{
+  "accountId": "accountId",
+  "customIdentifierFields": {},
+  "vendorId": "vendorId",
+  "callbackData": {},
+  "purchaseOrder": {
+    "id": 0,
+    "accountId": "accountId",
+    "number": "number",
+    "orderReferenceNumber": "orderReferenceNumber",
+    "requiredOn": "2025-10-03T20:29:51.6809441+00:00",
+    "date": "2025-10-03T20:29:51.6809508+00:00",
+    "createdBy": "createdBy",
+    "tax": 0.0,
+    "shippingAmount": 0.0,
+    "total": 0.0,
+    "buyingGroupName": "buyingGroupName",
+    "pricingGroup": "pricingGroup",
+    "inventoryLocation": "inventoryLocation",
+    "shipToDescription": "shipToDescription",
+    "isVendorCounterPickup": false,
+    "shipToAddressDto": null,
+    "customer": {
+      "name": "name",
+      "identifiers": {},
+      "technicianName": "technicianName",
+      "contactEmployeeName": "contactEmployeeName",
+      "contactEmployeeId": "contactEmployeeId",
+      "contactEmployeeOfficePhone": "contactEmployeeOfficePhone",
+      "contactEmployeeMobilePhone": "contactEmployeeMobilePhone",
+      "contactEmployeeEmail": "contactEmployeeEmail",
+      "contactEmployeeUserName": "contactEmployeeUserName"
+    },
+    "vendor": {
+      "name": "name",
+      "memo": "memo",
+      "subAccountId": "subAccountId",
+      "subAccountName": "subAccountName",
+      "branchId": "branchId"
+    },
+    "job": null,
+    "businessUnit": null,
+    "items": [
+      {
+        "vendorPartNumber": "vendorPartNumber",
+        "externalId": "externalId",
+        "name": "name",
+        "code": "code",
+        "description": "description",
+        "unitOfMeasure": "unitOfMeasure",
+        "quantity": 0.0,
+        "unitCost": 0.0,
+        "technicianName": "technicianName",
+        "productInfo": null,
+        "itemDynamicFields": {},
+        "serviceTitan.Common.Contracts.Models.IHasCatalogData.ItemId": "serviceTitan.Common.Contracts.Models.IHasCatalogData.ItemId",
+        "catalogData": null
+      }
+    ],
+    "dynamicHeaderFields": {}
+  },
+  "serviceTitan.Common.Contracts.Models.IHasCatalogDataItems<ServiceTitan.Common.Contracts.Models.PurchaseOrderItemDto>.Items": [
+    {
+      "vendorPartNumber": "vendorPartNumber",
+      "externalId": "externalId",
+      "name": "name",
+      "code": "code",
+      "description": "description",
+      "unitOfMeasure": "unitOfMeasure",
+      "quantity": 0.0,
+      "unitCost": 0.0,
+      "technicianName": "technicianName",
+      "productInfo": null,
+      "itemDynamicFields": {},
+      "serviceTitan.Common.Contracts.Models.IHasCatalogData.ItemId": "serviceTitan.Common.Contracts.Models.IHasCatalogData.ItemId",
+      "catalogData": null
+    }
+  ]
+}
