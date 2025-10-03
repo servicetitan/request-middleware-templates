@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "accounts.request",
+  "type": "object",
+  "description": "Request used to retrieve all accounts that a tenant's SSO login has access to from the supplier.\nOnly used for single sign-on (SSO) suppliers.",
+  "additionalProperties": false,
+  "properties": {
+    "vendorId": {
+      "type": "string"
+    },
+    "callbackData": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "Generic data that is specified by the previous request's CallbackInfo",
+      "additionalProperties": {}
+    }
+  }
+}

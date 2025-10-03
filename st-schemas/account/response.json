@@ -1,0 +1,171 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "account.response",
+  "type": "object",
+  "description": "Response for activating a customer's vendor account",
+  "additionalProperties": false,
+  "properties": {
+    "errorCode": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Error code returned from the vendor's API, if any"
+    },
+    "callBackInfo": {
+      "description": "Optional callback information to be used in the next request. Only present if a callback is needed",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/CallbackInfo"
+        }
+      ]
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "errorKind": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "message": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "errorMessage": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "account": {
+      "description": "Customer's vendor account information. This will be used in all future requests to the vendor",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/VendorAccountDto"
+        }
+      ]
+    },
+    "accounts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/VendorSubAccountDto"
+      }
+    },
+    "hasMorePages": {
+      "type": "boolean"
+    },
+    "$schema": {
+      "type": "string",
+      "default": "./account.response.schema.json"
+    }
+  },
+  "definitions": {
+    "CallbackInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "shouldCallback": {
+          "type": "boolean",
+          "description": "Controls whether another request should be made"
+        },
+        "values": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Generic object to be passed to the next request\nUsed for passing data between chained requests",
+          "additionalProperties": {}
+        }
+      }
+    },
+    "VendorAccountDto": {
+      "type": "object",
+      "description": "Model representing a customer's vendor account",
+      "additionalProperties": false,
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "Customer's vendor accountId"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name for the account"
+        },
+        "postalCode": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Postal code associated with vendor accountId"
+        },
+        "pricingGroup": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Customer's pricing group e.g. MainStoreCode"
+        },
+        "includeAccount": {
+          "type": "boolean",
+          "description": "Logic to determine whether the account should be added as a subAccount for customer\nThis should be true if the main accountId can be used for ordering or getting pricing"
+        },
+        "accounts": {
+          "type": "array",
+          "description": "List of subAccounts associated with the customer's vendor account\nSubAccounts can be used for ordering or getting pricing",
+          "items": {
+            "$ref": "#/definitions/VendorSubAccountDto"
+          }
+        },
+        "vendorIdentifiers": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "A collection of identifiers specific to the Vendor, which will be passed back to the vendor on all subsequent calls for this account",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "VendorSubAccountDto": {
+      "type": "object",
+      "description": "Model representing a customer's vendor subAccount associated with their vendor account",
+      "additionalProperties": false,
+      "properties": {
+        "subAccountId": {
+          "type": "string",
+          "description": "Customer's vendor subAccount Id"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name associated with the subAccount"
+        },
+        "postalCode": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Postal Code associated with the subAccount"
+        },
+        "customFields": {
+          "type": "object",
+          "description": "Any custom fields to display to user for this subAccount",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

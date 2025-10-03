@@ -1,0 +1,377 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "purchaseorderstatus.response",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "errorCode": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Error code returned from the vendor's API, if any"
+    },
+    "callBackInfo": {
+      "description": "Optional callback information to be used in the next request. Only present if a callback is needed",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/CallbackInfo"
+        }
+      ]
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "errorKind": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "message": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "errorMessage": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "purchaseOrder": {
+      "$ref": "#/definitions/PurchaseOrderResponse"
+    },
+    "dates": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/PurchaseOrderDateDto"
+        }
+      ]
+    },
+    "deliveryAppointments": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/definitions/PurchaseOrderDeliveryAppointmentDto"
+      }
+    },
+    "comments": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "orderAmount": {
+      "$ref": "#/definitions/PurchaseOrderAmountDto"
+    },
+    "purchaseOrderItems": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/PurchaseOrderItemResponse"
+      }
+    },
+    "shipments": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/definitions/PurchaseOrderShipmentDto"
+      }
+    },
+    "$schema": {
+      "type": "string",
+      "default": "./purchaseorderstatus.response.schema.json"
+    }
+  },
+  "definitions": {
+    "CallbackInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "shouldCallback": {
+          "type": "boolean",
+          "description": "Controls whether another request should be made"
+        },
+        "values": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Generic object to be passed to the next request\nUsed for passing data between chained requests",
+          "additionalProperties": {}
+        }
+      }
+    },
+    "PurchaseOrderResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "confirmationNumber": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "orderNumber": {
+          "type": "string"
+        },
+        "createdBy": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "orderType": {
+          "type": "string"
+        },
+        "deliveryService": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "orderReferenceNumber": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "shipmentReferenceNumber": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "status": {
+          "type": "string"
+        },
+        "currency": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "PurchaseOrderDateDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "deliveryRequestedFor": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "orderedOn": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "PurchaseOrderDeliveryAppointmentDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "instructionsTypeCode": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "instructions": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "fromTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "toTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timeZoneCode": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "PurchaseOrderAmountDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "subTotal": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "tax": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "total": {
+          "type": "number",
+          "format": "decimal"
+        }
+      }
+    },
+    "PurchaseOrderItemResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vendorPartNumber": {
+          "type": "string"
+        },
+        "itemNumber": {
+          "type": "string"
+        },
+        "orderedQty": {
+          "$ref": "#/definitions/OrderedQty"
+        },
+        "unitPrice": {
+          "$ref": "#/definitions/UnitPrice"
+        },
+        "amount": {
+          "type": "number",
+          "format": "decimal"
+        }
+      }
+    },
+    "OrderedQty": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "unitOfMeasureCode": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "unitOfMeasure": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "UnitPrice": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "unitOfMeasureCode": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "unitOfMeasure": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "PurchaseOrderShipmentDto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "shipmentNumber": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "status": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "total": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "deliveryRequestedOn": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "format": "date-time"
+        },
+        "deliveredOn": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "format": "date-time"
+        },
+        "invoicedOn": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "format": "date-time"
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Line"
+          }
+        }
+      }
+    },
+    "Line": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "orderLineId": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "itemNumber": {
+          "type": "string"
+        },
+        "orderedQty": {
+          "$ref": "#/definitions/OrderedQty"
+        },
+        "unitPrice": {
+          "$ref": "#/definitions/UnitPrice"
+        },
+        "amount": {
+          "type": "number",
+          "format": "decimal"
+        }
+      }
+    }
+  }
+}
