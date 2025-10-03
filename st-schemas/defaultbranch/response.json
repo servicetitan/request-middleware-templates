@@ -1,0 +1,216 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "defaultbranch.response",
+  "type": "object",
+  "description": "Response for retrieving an account/subAccount's default vendor branch",
+  "additionalProperties": false,
+  "properties": {
+    "errorCode": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Error code returned from the vendor's API, if any"
+    },
+    "callBackInfo": {
+      "description": "Optional callback information to be used in the next request. Only present if a callback is needed",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/CallbackInfo"
+        }
+      ]
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "errorKind": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "message": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "errorMessage": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "defaultBranch": {
+      "description": "Default branch for a customer's vendor account",
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/VendorBranchDto"
+        }
+      ]
+    },
+    "$schema": {
+      "type": "string",
+      "default": "./defaultbranch.response.schema.json"
+    }
+  },
+  "definitions": {
+    "CallbackInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "shouldCallback": {
+          "type": "boolean",
+          "description": "Controls whether another request should be made"
+        },
+        "values": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Generic object to be passed to the next request\nUsed for passing data between chained requests",
+          "additionalProperties": {}
+        }
+      }
+    },
+    "VendorBranchDto": {
+      "type": "object",
+      "description": "Model representing a branch",
+      "additionalProperties": false,
+      "properties": {
+        "branchId": {
+          "type": "string",
+          "description": "Vendor's identifier for the branch"
+        },
+        "branchName": {
+          "type": "string",
+          "description": "Name of the branch"
+        },
+        "pricingGroup": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Customer's pricing group e.g. MainStoreCode"
+        },
+        "phoneNumber": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Branch's phone number"
+        },
+        "contact": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Contact information for the branch"
+        },
+        "address": {
+          "description": "Address information for the branch",
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/AddressDto"
+            }
+          ]
+        },
+        "vendorIdentifiers": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "A map of identifiers specific to the Vendor, which will be passed back to the vendor on subsequent calls",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "latitude": {
+          "type": [
+            "null",
+            "number"
+          ],
+          "description": "Latitude",
+          "format": "double"
+        },
+        "longitude": {
+          "type": [
+            "null",
+            "number"
+          ],
+          "description": "Longitude",
+          "format": "double"
+        }
+      }
+    },
+    "AddressDto": {
+      "type": "object",
+      "description": "Object to represent an address",
+      "additionalProperties": false,
+      "properties": {
+        "street": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Street"
+        },
+        "unit": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Unit"
+        },
+        "city": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "City"
+        },
+        "state": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "State"
+        },
+        "postalCode": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Postal code"
+        },
+        "country": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Country"
+        },
+        "isVendorAddress": {
+          "type": "boolean",
+          "description": "IsVendorAddress"
+        },
+        "addressId": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "AddressId"
+        }
+      }
+    }
+  }
+}

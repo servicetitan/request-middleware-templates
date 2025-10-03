@@ -1,0 +1,22 @@
+{
+  "errorCode": "errorCode",
+  "callBackInfo": null,
+  "success": false,
+  "errorKind": "errorKind",
+  "message": "message",
+  "errorMessage": "errorMessage",
+  "branches": [
+    {
+      "branchId": "branchId",
+      "branchName": "branchName",
+      "pricingGroup": "pricingGroup",
+      "phoneNumber": "phoneNumber",
+      "contact": "contact",
+      "address": null,
+      "vendorIdentifiers": {},
+      "latitude": 0.0,
+      "longitude": 0.0
+    }
+  ],
+  "$schema": "./branches.response.schema.json"
+}

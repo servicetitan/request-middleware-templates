@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "available-skus.request",
+  "type": "object",
+  "description": "Request to get a list of available SKUs for a vendor by specifying either a specific branch or a subAccount.",
+  "additionalProperties": false,
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "The main account identifier for the supplier"
+    },
+    "customIdentifierFields": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "A collection of identifiers specific to the Vendor.\nThese were either previously returned by the vendor, or configured by the user based on vendor-specific inputs",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "vendorId": {
+      "type": "string"
+    },
+    "callbackData": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "Generic data that is specified by the previous request's CallbackInfo",
+      "additionalProperties": {}
+    },
+    "subAccountId": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Sub Account identifier"
+    },
+    "branchId": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Vendor branch identifier"
+    },
+    "itemIds": {
+      "type": "array",
+      "description": "List of items to check availability for",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pageNumber": {
+      "type": "integer",
+      "format": "int32"
+    }
+  }
+}
