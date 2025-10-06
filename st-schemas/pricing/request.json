@@ -1,0 +1,435 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "pricing.request",
+  "type": "object",
+  "description": "Pricing request used to get the cost for a list of items",
+  "additionalProperties": false,
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "The main account identifier for the supplier"
+    },
+    "customIdentifierFields": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "A collection of identifiers specific to the Vendor.\nThese were either previously returned by the vendor, or configured by the user based on vendor-specific inputs",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "vendorId": {
+      "type": "string"
+    },
+    "callbackData": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "Generic data that is specified by the previous request's CallbackInfo",
+      "additionalProperties": {}
+    },
+    "subAccountId": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "SubAccount identifier for the item request"
+    },
+    "branchId": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "The identifier for the branch to get the cost for"
+    },
+    "items": {
+      "type": "array",
+      "description": "List of items to get the cost for",
+      "items": {
+        "$ref": "#/definitions/ItemPricingRequestDto"
+      }
+    }
+  },
+  "definitions": {
+    "ItemPricingRequestDto": {
+      "type": "object",
+      "description": "Item request object to specify the item and quantity for the pricing request",
+      "additionalProperties": false,
+      "properties": {
+        "itemId": {
+          "type": "string",
+          "description": "Item's identifier in the vendor's system"
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Quantity of the item for the request",
+          "format": "decimal"
+        },
+        "skuType": {
+          "type": "string",
+          "description": "SkuType of the item for the request"
+        },
+        "customFields": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "List of custom fields for the item from pricing request source (e.g. Purchase Order)",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "catalogData": {
+          "description": "The results of the lookup of extended supplier catalog data for this item. Not all items will have extended data, especially if they are not in the catalog.",
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Product"
+            }
+          ]
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "description": "Describes a product sold by a supplier. Products can have variants within the same family.",
+      "additionalProperties": false,
+      "properties": {
+        "displayName": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "description": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "manufacturer": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "brand": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "series": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "model": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "vendorPartNumber": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "manufacturerPartNumber": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "manufacturerSuggestedRetailPrice": {
+          "type": [
+            "null",
+            "number"
+          ],
+          "format": "decimal"
+        },
+        "assets": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Asset"
+          }
+        },
+        "warranties": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Warranty"
+          }
+        },
+        "unitsOfMeasure": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "alternatives": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Alternative"
+          }
+        },
+        "additionalIdentifiers": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Identifier"
+          }
+        },
+        "specifications": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Specification"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "categoryIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdOnUtc": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "format": "date-time"
+        },
+        "modifiedOnUtc": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "format": "date-time"
+        },
+        "active": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DisplayContent": {
+      "type": "object",
+      "description": "Describes content that can be displayed to a user.\nContent can be stored as plain text, HTML, or both.",
+      "additionalProperties": false,
+      "properties": {
+        "plainText": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "The representation of the content as unformatted plain text"
+        },
+        "html": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "The representation of the content as HTML"
+        }
+      }
+    },
+    "Asset": {
+      "type": "object",
+      "description": "Describes a media asset to be displayed on a user interface",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "isPrimary": {
+          "type": "boolean"
+        },
+        "displayName": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "type": {
+          "$ref": "#/definitions/AssetType"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "AssetType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Unspecified",
+        "Image",
+        "Video",
+        "Attachment"
+      ],
+      "enum": [
+        "Unspecified",
+        "Image",
+        "Video",
+        "Attachment"
+      ]
+    },
+    "Warranty": {
+      "type": "object",
+      "description": "Describes a warranty offered on an item",
+      "additionalProperties": false,
+      "properties": {
+        "durationInMonths": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "$ref": "#/definitions/WarrantyType"
+        },
+        "description": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        }
+      }
+    },
+    "WarrantyType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Unspecified",
+        "Manufacturer",
+        "Distributor"
+      ],
+      "enum": [
+        "Unspecified",
+        "Manufacturer",
+        "Distributor"
+      ]
+    },
+    "Alternative": {
+      "type": "object",
+      "description": "Describes a relationship between two items, where one could be replaced with another for some reason",
+      "additionalProperties": false,
+      "properties": {
+        "alternativeItemId": {
+          "type": "string"
+        },
+        "alternativeReason": {
+          "$ref": "#/definitions/AlternativeReason"
+        },
+        "description": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        }
+      }
+    },
+    "AlternativeReason": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Unspecified",
+        "Superseded",
+        "Upgrade",
+        "Downgrade",
+        "Equivalent"
+      ],
+      "enum": [
+        "Unspecified",
+        "Superseded",
+        "Upgrade",
+        "Downgrade",
+        "Equivalent"
+      ]
+    },
+    "Identifier": {
+      "type": "object",
+      "description": "Describes a method to uniquely identify this item, perhaps based on a standard",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "Specification": {
+      "type": "object",
+      "description": "Describes an item's physical properties, compliance with standards.\nThese are values are used to enhance a description or provide filtering capabilities",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
