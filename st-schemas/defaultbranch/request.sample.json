@@ -1,0 +1,9 @@
+{
+  "subAccountId": "subAccountId",
+  "postalCode": "postalCode",
+  "purchaseOrderCustomFields": {},
+  "accountId": "accountId",
+  "customIdentifierFields": {},
+  "vendorId": "vendorId",
+  "callbackData": {}
+}

@@ -1,0 +1,31 @@
+{
+  "errorCode": "errorCode",
+  "callBackInfo": null,
+  "success": false,
+  "errorKind": "errorKind",
+  "message": "message",
+  "errorMessage": "errorMessage",
+  "vendorBranchCosts": [
+    {
+      "accountId": "accountId",
+      "subAccountId": "subAccountId",
+      "itemId": "itemId",
+      "branchItemCosts": [
+        {
+          "branchId": "branchId",
+          "stockLevel": 0.0,
+          "costs": [
+            {
+              "cost": 0.0,
+              "quantity": 0.0,
+              "skipStoringCost": false,
+              "customFields": {},
+              "message": "message"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "$schema": "./branch-pricing.response.schema.json"
+}

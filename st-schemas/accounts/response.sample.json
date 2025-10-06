@@ -1,0 +1,27 @@
+{
+  "errorCode": "errorCode",
+  "callBackInfo": null,
+  "success": false,
+  "errorKind": "errorKind",
+  "message": "message",
+  "errorMessage": "errorMessage",
+  "accounts": [
+    {
+      "accountId": "accountId",
+      "name": "name",
+      "postalCode": "postalCode",
+      "pricingGroup": "pricingGroup",
+      "includeAccount": false,
+      "accounts": [
+        {
+          "subAccountId": "subAccountId",
+          "name": "name",
+          "postalCode": "postalCode",
+          "customFields": {}
+        }
+      ],
+      "vendorIdentifiers": {}
+    }
+  ],
+  "$schema": "./accounts.response.schema.json"
+}
