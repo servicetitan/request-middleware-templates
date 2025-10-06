@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "defaultbranch.request",
+  "type": "object",
+  "description": "Request for retrieving a default vendor branch for an account/subAccount",
+  "additionalProperties": false,
+  "properties": {
+    "subAccountId": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Sub Account for associated branches"
+    },
+    "postalCode": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Postal Code to search near"
+    },
+    "purchaseOrderCustomFields": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "Values for supplier custom purchase order fields entered by the user on a purchase order",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "accountId": {
+      "type": "string",
+      "description": "The main account identifier for the supplier"
+    },
+    "customIdentifierFields": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "A collection of identifiers specific to the Vendor.\nThese were either previously returned by the vendor, or configured by the user based on vendor-specific inputs",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "vendorId": {
+      "type": "string"
+    },
+    "callbackData": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "Generic data that is specified by the previous request's CallbackInfo",
+      "additionalProperties": {}
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "errorCode": "errorCode",
+  "callBackInfo": null,
+  "success": false,
+  "errorKind": "errorKind",
+  "message": "message",
+  "errorMessage": "errorMessage",
+  "status": 0,
+  "orderReferenceNumber": "orderReferenceNumber",
+  "reason": "reason",
+  "customIdentifierFields": {},
+  "$schema": "./purchaseorder.response.schema.json"
+}

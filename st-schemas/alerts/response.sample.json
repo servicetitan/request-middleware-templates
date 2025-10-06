@@ -1,0 +1,17 @@
+{
+  "errorCode": "errorCode",
+  "callBackInfo": null,
+  "success": false,
+  "errorKind": "errorKind",
+  "message": "message",
+  "errorMessage": "errorMessage",
+  "alerts": [
+    {
+      "severity": "severity",
+      "appliesTo": "appliesTo",
+      "title": "title",
+      "message": "message"
+    }
+  ],
+  "$schema": "./alerts.response.schema.json"
+}
