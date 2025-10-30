@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "account.response",
   "type": "object",
-  "description": "Response for activating a customer's vendor account (updated)",
+  "description": "Response for activating a customer's vendor account",
   "additionalProperties": false,
   "properties": {
     "errorCode": {
@@ -161,6 +161,16 @@
         "customFields": {
           "type": "object",
           "description": "Any custom fields to display to user for this subAccount",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "vendorIdentifiers": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "A map of identifiers specific to the Vendor, which will be passed back to the vendor on subsequent calls",
           "additionalProperties": {
             "type": "string"
           }

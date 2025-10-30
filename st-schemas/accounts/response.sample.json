@@ -17,7 +17,8 @@
           "subAccountId": "subAccountId",
           "name": "name",
           "postalCode": "postalCode",
-          "customFields": {}
+          "customFields": {},
+          "vendorIdentifiers": {}
         }
       ],
       "vendorIdentifiers": {}

@@ -151,6 +151,16 @@
           "additionalProperties": {
             "type": "string"
           }
+        },
+        "vendorIdentifiers": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "A map of identifiers specific to the Vendor, which will be passed back to the vendor on subsequent calls",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     }

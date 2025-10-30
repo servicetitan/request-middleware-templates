@@ -106,7 +106,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "Idenitifer for the sub option to be used in purchase history request in Values Collection. Presented to user in a dropdown\ne.g. templatId, dateRange, etc."
+          "description": "Identifier for the sub option to be used in purchase history request in Values Collection. Presented to user in a dropdown\ne.g. templatId, dateRange, etc."
         },
         "name": {
           "type": "string",
