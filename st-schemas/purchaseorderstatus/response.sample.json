@@ -10,7 +10,7 @@
     "requestId": "requestId",
     "confirmationNumber": "confirmationNumber",
     "orderNumber": "orderNumber",
-    "createdBy": "2025-10-30T12:58:35.2051654+00:00",
+    "createdBy": "2025-10-31T17:28:01.7545383+00:00",
     "orderType": "orderType",
     "deliveryService": "deliveryService",
     "orderReferenceNumber": "orderReferenceNumber",
@@ -23,8 +23,8 @@
     {
       "instructionsTypeCode": "instructionsTypeCode",
       "instructions": "instructions",
-      "fromTime": "2025-10-30T12:58:35.2052170+00:00",
-      "toTime": "2025-10-30T12:58:35.2052215+00:00",
+      "fromTime": "2025-10-31T17:28:01.7546294+00:00",
+      "toTime": "2025-10-31T17:28:01.7546368+00:00",
       "timeZoneCode": "timeZoneCode"
     }
   ],
@@ -56,9 +56,9 @@
       "shipmentNumber": "shipmentNumber",
       "status": "status",
       "total": 0.0,
-      "deliveryRequestedOn": "2025-10-30T12:58:35.2053144+00:00",
-      "deliveredOn": "2025-10-30T12:58:35.2053188+00:00",
-      "invoicedOn": "2025-10-30T12:58:35.2053228+00:00",
+      "deliveryRequestedOn": "2025-10-31T17:28:01.7547315+00:00",
+      "deliveredOn": "2025-10-31T17:28:01.7547352+00:00",
+      "invoicedOn": "2025-10-31T17:28:01.7547385+00:00",
       "lines": [
         {
           "id": "id",
