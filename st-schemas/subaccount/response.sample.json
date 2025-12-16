@@ -10,7 +10,8 @@
       "subAccountId": "subAccountId",
       "name": "name",
       "postalCode": "postalCode",
-      "customFields": {}
+      "customFields": {},
+      "vendorIdentifiers": {}
     }
   ],
   "$schema": "./subaccount.response.schema.json"
