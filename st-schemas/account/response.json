@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "account.response",
   "type": "object",
-  "description": "Response for activating a customer's vendor account (test change)",
+  "description": "Response for activating a customer's vendor account",
   "additionalProperties": false,
   "properties": {
     "errorCode": {
