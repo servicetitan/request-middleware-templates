@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "associated-branches.request",
+  "type": "object",
+  "description": "Request for retrieving branches associated with a specific branch for sourcing inventory",
+  "additionalProperties": false,
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "The main account identifier for the supplier"
+    },
+    "customIdentifierFields": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "A collection of identifiers specific to the Vendor.\nThese were either previously returned by the vendor, or configured by the user based on vendor-specific inputs",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "vendorId": {
+      "type": "string"
+    },
+    "callbackData": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "Generic data that is specified by the previous request's CallbackInfo",
+      "additionalProperties": {}
+    },
+    "branchId": {
+      "type": "string",
+      "description": "The branch ID to find associations for"
+    },
+    "subAccountId": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "Sub Account for associated branches"
+    },
+    "includeMetadata": {
+      "type": "boolean",
+      "description": "Include metadata about associations (distance, relationship type, etc.)"
+    }
+  }
+}

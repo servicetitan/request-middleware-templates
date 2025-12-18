@@ -1,0 +1,9 @@
+{
+  "accountId": "accountId",
+  "customIdentifierFields": {},
+  "vendorId": "vendorId",
+  "callbackData": {},
+  "branchId": "branchId",
+  "subAccountId": "subAccountId",
+  "includeMetadata": false
+}

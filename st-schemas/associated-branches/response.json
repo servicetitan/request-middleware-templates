@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "field-configuration-callbackname.response",
+  "title": "associated-branches.response",
   "type": "object",
-  "description": "Response for retrieving a purchase order field dynamic configuration",
+  "description": "Response containing branches associated with a specific branch for sourcing inventory",
   "additionalProperties": false,
   "properties": {
     "errorCode": {
@@ -44,37 +44,15 @@
         "string"
       ]
     },
-    "options": {
+    "associatedBranches": {
       "type": "array",
-      "description": "Options to display for fields that are dropdowns or fixed option sets.",
       "items": {
-        "$ref": "#/definitions/VendorPurchaseOrderDynamicOptionDto"
+        "$ref": "#/definitions/VendorAssociatedBranchDto"
       }
-    },
-    "isVisible": {
-      "type": [
-        "boolean",
-        "null"
-      ],
-      "description": "If true or unspecified, the field will be shown to the user. If false, the field is hidden.\nCan be used to hide fields based off of values of other fields"
-    },
-    "isRequired": {
-      "type": [
-        "boolean",
-        "null"
-      ],
-      "description": "If true, the field will be required to send an electronic purchase order.\nIf false, the field is optional.\nIf unspecified, will revert to the default setting for the field in the vendor configuration."
-    },
-    "defaultValue": {
-      "type": [
-        "null",
-        "string"
-      ],
-      "description": "The default value to pre-populate the field with, if any"
     },
     "$schema": {
       "type": "string",
-      "default": "./field-configuration-callbackname.response.schema.json"
+      "default": "./associated-branches.response.schema.json"
     }
   },
   "definitions": {
@@ -96,25 +74,23 @@
         }
       }
     },
-    "VendorPurchaseOrderDynamicOptionDto": {
+    "VendorAssociatedBranchDto": {
       "type": "object",
+      "description": "Represents a branch that is associated with another branch for sourcing",
       "additionalProperties": false,
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "The identifier/value to send back on pricing or purchase order calls when this option is selected"
+        "branchId": {
+          "type": "string"
         },
-        "name": {
-          "type": "string",
-          "description": "The option display name to display to the user"
-        },
-        "cost": {
+        "metadata": {
           "type": [
             "null",
-            "number"
+            "object"
           ],
-          "description": "For line-item fields, selecting this option will change the price of the item to the value specified",
-          "format": "decimal"
+          "description": "Additional metadata about the association (distance, relationship type, etc.)",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     }
