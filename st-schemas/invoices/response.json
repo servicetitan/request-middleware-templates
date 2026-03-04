@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "shippingaddresses.response",
+  "title": "invoices.response",
   "type": "object",
-  "description": "Response for retrieving shipping addresses associated with a vendor account",
+  "description": "Response containing invoices fetched from a supplier",
   "additionalProperties": false,
   "properties": {
     "errorCode": {
@@ -44,20 +44,16 @@
         "string"
       ]
     },
-    "accountId": {
-      "type": "string",
-      "description": "Customer's vendor accountId"
-    },
-    "shippingAddresses": {
+    "invoices": {
       "type": "array",
-      "description": "Shipping addresses information from the vendor",
+      "description": "List of invoices returned by the supplier",
       "items": {
-        "$ref": "#/definitions/VendorAccountShippingAddressDto"
+        "$ref": "#/definitions/InvoiceDto"
       }
     },
     "$schema": {
       "type": "string",
-      "default": "./shippingaddresses.response.schema.json"
+      "default": "./invoices.response.schema.json"
     }
   },
   "definitions": {
@@ -86,53 +82,51 @@
         }
       }
     },
-    "VendorAccountShippingAddressDto": {
+    "InvoiceDto": {
       "type": "object",
-      "description": "Model representing a customer's vendor account shipping addresses",
+      "description": "Represents a single invoice from a supplier",
       "additionalProperties": false,
       "properties": {
-        "shippingAddressId": {
+        "invoiceNumber": {
           "type": "string",
-          "description": "Shipping address identifier in vendor's system"
+          "description": "Unique invoice number from the supplier"
         },
-        "name": {
+        "invoiceDate": {
           "type": "string",
-          "description": "Shipping address display name"
+          "description": "Date of the invoice"
         },
-        "street": {
+        "lineItems": {
+          "type": "array",
+          "description": "Line items on this invoice",
+          "items": {
+            "$ref": "#/definitions/InvoiceLineItemDto"
+          }
+        }
+      }
+    },
+    "InvoiceLineItemDto": {
+      "type": "object",
+      "description": "Represents a line item on a supplier invoice",
+      "additionalProperties": false,
+      "properties": {
+        "itemId": {
           "type": "string",
-          "description": "Street"
+          "description": "Product/item identifier from the supplier"
         },
-        "unit": {
-          "type": [
-            "null",
-            "string"
-          ],
-          "description": "Unit"
+        "quantity": {
+          "type": "integer",
+          "description": "Quantity on the invoice line",
+          "format": "int32"
         },
-        "city": {
-          "type": "string",
-          "description": "City"
+        "price": {
+          "type": "number",
+          "description": "Unit price for the item",
+          "format": "decimal"
         },
-        "state": {
-          "type": "string",
-          "description": "State"
-        },
-        "postalCode": {
-          "type": "string",
-          "description": "PostalCode"
-        },
-        "country": {
-          "type": "string",
-          "description": "Country"
-        },
-        "defaultAddress": {
-          "type": "boolean",
-          "description": "Whether the shipping address should be considered the default address\nUsed to automatically select a ship-to address when creating a purchase order for the vendor"
-        },
-        "isVendorAddress": {
-          "type": "boolean",
-          "description": "This is default true"
+        "total": {
+          "type": "number",
+          "description": "Total amount for this line item",
+          "format": "decimal"
         }
       }
     }

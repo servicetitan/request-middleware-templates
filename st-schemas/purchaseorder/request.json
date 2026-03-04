@@ -380,6 +380,13 @@
         "jobNumber": {
           "type": "string",
           "description": "Vendor memo"
+        },
+        "jobServiceLocationName": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "description": "Job location memo"
         }
       }
     },

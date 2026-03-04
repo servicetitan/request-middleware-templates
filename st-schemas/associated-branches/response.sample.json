@@ -1,0 +1,16 @@
+{
+  "errorCode": "errorCode",
+  "callBackInfo": null,
+  "success": false,
+  "errorKind": "errorKind",
+  "message": "message",
+  "errorMessage": "errorMessage",
+  "associatedBranches": [
+    {
+      "branchId": "branchId",
+      "sourceBranchId": "sourceBranchId",
+      "metadata": {}
+    }
+  ],
+  "$schema": "./associated-branches.response.schema.json"
+}

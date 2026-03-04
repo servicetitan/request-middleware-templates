@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "alerts.response",
+  "title": "purchase-history-{OptionId}.response",
   "type": "object",
-  "description": "Response from the vendor for the Supplier Alerts Request",
+  "description": "Response for dynamic endpoint pattern: purchase-history-{OptionId}",
   "additionalProperties": false,
   "properties": {
     "errorCode": {
@@ -44,16 +44,16 @@
         "string"
       ]
     },
-    "alerts": {
+    "productIds": {
       "type": "array",
-      "description": "A list of alerts to be displayed to the user for the given account",
+      "description": "List of productIds that should be imported to the tenant pricebook as a result of the selected import option\nThe productId corresponds to the externalId field on vendor catalog items",
       "items": {
-        "$ref": "#/definitions/SupplierAlertDto"
+        "type": "string"
       }
     },
     "$schema": {
       "type": "string",
-      "default": "./alerts.response.schema.json"
+      "default": "./purchase-history-OptionId.response.schema.json"
     }
   },
   "definitions": {
@@ -81,39 +81,8 @@
           "format": "int32"
         }
       }
-    },
-    "SupplierAlertDto": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "severity",
-        "appliesTo",
-        "message"
-      ],
-      "properties": {
-        "severity": {
-          "type": "string",
-          "description": "Severity of alert (Warning, Error, Info)",
-          "minLength": 1
-        },
-        "appliesTo": {
-          "type": "string",
-          "description": "Area that alert applies to (e.g. Purchase Orders)",
-          "minLength": 1
-        },
-        "title": {
-          "type": [
-            "null",
-            "string"
-          ],
-          "description": "Title for the alert that will be displayed to the user"
-        },
-        "message": {
-          "type": "string",
-          "description": "Message that will be displayed to the user",
-          "minLength": 1
-        }
-      }
     }
-  }
+  },
+  "x-endpoint-pattern": "purchase-history-{OptionId}",
+  "x-is-wildcard": true
 }

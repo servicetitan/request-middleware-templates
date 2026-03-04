@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "account.response",
   "type": "object",
-  "description": "Response for activating a customer's vendor account (test change)",
+  "description": "Response for activating a customer's vendor account",
   "additionalProperties": false,
   "properties": {
     "errorCode": {
@@ -85,6 +85,13 @@
           ],
           "description": "Generic object to be passed to the next request\nUsed for passing data between chained requests",
           "additionalProperties": {}
+        },
+        "maxCallbacksForRequest": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
         }
       }
     },

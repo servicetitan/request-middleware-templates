@@ -1,0 +1,23 @@
+{
+  "errorCode": "errorCode",
+  "callBackInfo": null,
+  "success": false,
+  "errorKind": "errorKind",
+  "message": "message",
+  "errorMessage": "errorMessage",
+  "invoices": [
+    {
+      "invoiceNumber": "invoiceNumber",
+      "invoiceDate": "invoiceDate",
+      "lineItems": [
+        {
+          "itemId": "itemId",
+          "quantity": 0,
+          "price": 0.0,
+          "total": 0.0
+        }
+      ]
+    }
+  ],
+  "$schema": "./invoices.response.schema.json"
+}

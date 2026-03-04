@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "field-configuration-callbackname.response",
+  "title": "field-configuration-{CallbackName}.response",
   "type": "object",
-  "description": "Response for retrieving a purchase order field dynamic configuration",
+  "description": "Response for dynamic endpoint pattern: field-configuration-{CallbackName}\n\nResponse for retrieving a purchase order field dynamic configuration",
   "additionalProperties": false,
   "properties": {
     "errorCode": {
@@ -74,7 +74,7 @@
     },
     "$schema": {
       "type": "string",
-      "default": "./field-configuration-callbackname.response.schema.json"
+      "default": "./field-configuration-CallbackName.response.schema.json"
     }
   },
   "definitions": {
@@ -93,6 +93,13 @@
           ],
           "description": "Generic object to be passed to the next request\nUsed for passing data between chained requests",
           "additionalProperties": {}
+        },
+        "maxCallbacksForRequest": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
         }
       }
     },
@@ -118,5 +125,7 @@
         }
       }
     }
-  }
+  },
+  "x-endpoint-pattern": "field-configuration-{CallbackName}",
+  "x-is-wildcard": true
 }

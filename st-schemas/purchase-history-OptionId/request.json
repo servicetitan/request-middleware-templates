@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "purchase-history-{OptionId}.request",
+  "type": "object",
+  "description": "Dynamic endpoint pattern: purchase-history-{OptionId}\n\nRequest for a purchase history import from a supplier using a specified option",
+  "additionalProperties": false,
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "The main account identifier for the supplier"
+    },
+    "customIdentifierFields": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "A collection of identifiers specific to the Vendor.\nThese were either previously returned by the vendor, or configured by the user based on vendor-specific inputs",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "vendorId": {
+      "type": "string"
+    },
+    "callbackData": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "Generic data that is specified by the previous request's CallbackInfo",
+      "additionalProperties": {}
+    },
+    "optionId": {
+      "type": "string",
+      "description": "Option identifier for the purchase history selection\nSpecified by the OptionId from the VendorPurchaseHistoryOptionsResponse"
+    },
+    "values": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "description": "Additional values/parameters for the purchase history option selected by the user",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "x-endpoint-pattern": "purchase-history-{OptionId}",
+  "x-is-wildcard": true
+}

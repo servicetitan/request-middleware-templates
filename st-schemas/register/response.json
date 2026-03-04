@@ -85,6 +85,13 @@
           ],
           "description": "Generic object to be passed to the next request\nUsed for passing data between chained requests",
           "additionalProperties": {}
+        },
+        "maxCallbacksForRequest": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
         }
       }
     },
