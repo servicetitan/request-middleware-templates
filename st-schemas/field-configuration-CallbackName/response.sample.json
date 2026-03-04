@@ -15,5 +15,5 @@
   "isVisible": false,
   "isRequired": false,
   "defaultValue": "defaultValue",
-  "$schema": "./field-configuration-callbackname.response.schema.json"
+  "$schema": "./field-configuration-CallbackName.response.schema.json"
 }

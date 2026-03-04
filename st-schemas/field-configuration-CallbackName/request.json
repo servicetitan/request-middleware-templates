@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "field-configuration-callbackname.request",
+  "title": "field-configuration-{CallbackName}.request",
   "type": "object",
-  "description": "Request for retrieving vendor purchase order dynamic options to be used in a dropdown field on the purchase order",
+  "description": "Dynamic endpoint pattern: field-configuration-{CallbackName}\n\nRequest for retrieving vendor purchase order dynamic options to be used in a dropdown field on the purchase order",
   "additionalProperties": false,
   "properties": {
     "accountId": {
@@ -260,5 +260,7 @@
         }
       }
     }
-  }
+  },
+  "x-endpoint-pattern": "field-configuration-{CallbackName}",
+  "x-is-wildcard": true
 }

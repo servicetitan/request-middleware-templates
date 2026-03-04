@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "shippingaddresses.response",
+  "title": "associated-branches.response",
   "type": "object",
-  "description": "Response for retrieving shipping addresses associated with a vendor account",
+  "description": "Response containing branches associated with a specific branch for sourcing inventory",
   "additionalProperties": false,
   "properties": {
     "errorCode": {
@@ -44,20 +44,15 @@
         "string"
       ]
     },
-    "accountId": {
-      "type": "string",
-      "description": "Customer's vendor accountId"
-    },
-    "shippingAddresses": {
+    "associatedBranches": {
       "type": "array",
-      "description": "Shipping addresses information from the vendor",
       "items": {
-        "$ref": "#/definitions/VendorAccountShippingAddressDto"
+        "$ref": "#/definitions/VendorAssociatedBranchDto"
       }
     },
     "$schema": {
       "type": "string",
-      "default": "./shippingaddresses.response.schema.json"
+      "default": "./associated-branches.response.schema.json"
     }
   },
   "definitions": {
@@ -86,53 +81,30 @@
         }
       }
     },
-    "VendorAccountShippingAddressDto": {
+    "VendorAssociatedBranchDto": {
       "type": "object",
-      "description": "Model representing a customer's vendor account shipping addresses",
+      "description": "Represents a branch that is associated with another branch for sourcing",
       "additionalProperties": false,
       "properties": {
-        "shippingAddressId": {
-          "type": "string",
-          "description": "Shipping address identifier in vendor's system"
+        "branchId": {
+          "type": "string"
         },
-        "name": {
-          "type": "string",
-          "description": "Shipping address display name"
-        },
-        "street": {
-          "type": "string",
-          "description": "Street"
-        },
-        "unit": {
+        "sourceBranchId": {
           "type": [
             "null",
             "string"
           ],
-          "description": "Unit"
+          "description": "The source branch this association belongs to. Used in bulk mode where all associations\nare returned in a single response. Null in per-branch mode (source is implicit from the request)."
         },
-        "city": {
-          "type": "string",
-          "description": "City"
-        },
-        "state": {
-          "type": "string",
-          "description": "State"
-        },
-        "postalCode": {
-          "type": "string",
-          "description": "PostalCode"
-        },
-        "country": {
-          "type": "string",
-          "description": "Country"
-        },
-        "defaultAddress": {
-          "type": "boolean",
-          "description": "Whether the shipping address should be considered the default address\nUsed to automatically select a ship-to address when creating a purchase order for the vendor"
-        },
-        "isVendorAddress": {
-          "type": "boolean",
-          "description": "This is default true"
+        "metadata": {
+          "type": [
+            "null",
+            "object"
+          ],
+          "description": "Additional metadata about the association (distance, relationship type, etc.)",
+          "additionalProperties": {
+            "type": "string"
+          }
         }
       }
     }
