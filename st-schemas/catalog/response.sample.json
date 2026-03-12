@@ -1,0 +1,189 @@
+{
+  "products": [
+    {
+      "displayName": null,
+      "description": null,
+      "manufacturer": null,
+      "brand": null,
+      "series": null,
+      "model": null,
+      "vendorPartNumber": "vendorPartNumber",
+      "manufacturerPartNumber": "manufacturerPartNumber",
+      "manufacturerSuggestedRetailPrice": 0.0,
+      "assets": [
+        {
+          "id": "id",
+          "isPrimary": false,
+          "displayName": null,
+          "type": "Unspecified",
+          "url": "url"
+        }
+      ],
+      "warranties": [
+        {
+          "durationInMonths": 0,
+          "type": "Unspecified",
+          "description": null
+        }
+      ],
+      "unitsOfMeasure": [
+        ""
+      ],
+      "alternatives": [
+        {
+          "alternativeItemId": "alternativeItemId",
+          "alternativeReason": "Unspecified",
+          "description": null
+        }
+      ],
+      "additionalIdentifiers": [
+        {
+          "value": "value",
+          "type": "type"
+        }
+      ],
+      "specifications": [
+        {
+          "value": "value",
+          "type": "type"
+        }
+      ],
+      "availabilitySpecifications": [
+        {
+          "value": "value",
+          "type": "type"
+        }
+      ],
+      "id": "id",
+      "categoryIds": [
+        ""
+      ],
+      "createdOnUtc": "2026-03-12T20:33:26.3878472+00:00",
+      "modifiedOnUtc": "2026-03-12T20:33:26.3879193+00:00",
+      "active": false
+    }
+  ],
+  "categories": [
+    {
+      "id": "id",
+      "createdOnUtc": "2026-03-12T20:33:26.3879441+00:00",
+      "modifiedOnUtc": "2026-03-12T20:33:26.3879464+00:00",
+      "name": {
+        "plainText": "plainText",
+        "html": "html"
+      },
+      "active": false,
+      "description": null,
+      "parentCategoryId": "parentCategoryId",
+      "assets": [
+        {
+          "id": "id",
+          "isPrimary": false,
+          "displayName": null,
+          "type": "Unspecified",
+          "url": "url"
+        }
+      ]
+    }
+  ],
+  "attachedAssets": [
+    {
+      "asset": {
+        "id": "id",
+        "isPrimary": false,
+        "displayName": null,
+        "type": "Unspecified",
+        "url": "url"
+      },
+      "attachToId": "attachToId",
+      "attachToType": "Unspecified",
+      "recordSeparator": "recordSeparator"
+    }
+  ],
+  "attachedVariants": [
+    {
+      "variant": {
+        "displayName": null,
+        "description": null,
+        "manufacturer": null,
+        "brand": null,
+        "series": null,
+        "model": null,
+        "vendorPartNumber": "vendorPartNumber",
+        "manufacturerPartNumber": "manufacturerPartNumber",
+        "manufacturerSuggestedRetailPrice": 0.0,
+        "assets": [
+          {
+            "id": "id",
+            "isPrimary": false,
+            "displayName": null,
+            "type": "Unspecified",
+            "url": "url"
+          }
+        ],
+        "warranties": [
+          {
+            "durationInMonths": 0,
+            "type": "Unspecified",
+            "description": null
+          }
+        ],
+        "unitsOfMeasure": [
+          ""
+        ],
+        "alternatives": [
+          {
+            "alternativeItemId": "alternativeItemId",
+            "alternativeReason": "Unspecified",
+            "description": null
+          }
+        ],
+        "additionalIdentifiers": [
+          {
+            "value": "value",
+            "type": "type"
+          }
+        ],
+        "specifications": [
+          {
+            "value": "value",
+            "type": "type"
+          }
+        ],
+        "availabilitySpecifications": [
+          {
+            "value": "value",
+            "type": "type"
+          }
+        ],
+        "id": "id",
+        "variedSpecifications": [
+          {
+            "value": "value",
+            "type": "type"
+          }
+        ],
+        "assetsMergeType": "Replace",
+        "warrantiesMergeType": "Replace",
+        "unitsOfMeasureMergeType": "Replace",
+        "alternativesMergeType": "Replace",
+        "additionalIdentifiersMergeType": "Replace",
+        "specificationsMergeType": "Replace"
+      },
+      "productId": "productId"
+    }
+  ],
+  "itemAvailabilities": [
+    {
+      "itemId": "itemId",
+      "availabilitySpecifications": [
+        {
+          "value": "value",
+          "type": "type"
+        }
+      ]
+    }
+  ],
+  "hasMoreResults": false,
+  "pullState": {}
+}
