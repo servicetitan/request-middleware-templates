@@ -1,0 +1,694 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "catalog.response",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Product"
+      }
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Category"
+      }
+    },
+    "attachedAssets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/AttachedAsset"
+      }
+    },
+    "attachedVariants": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/AttachedVariant"
+      }
+    },
+    "itemAvailabilities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ItemAvailability"
+      }
+    },
+    "hasMoreResults": {
+      "type": "boolean"
+    },
+    "pullState": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "definitions": {
+    "Product": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "displayName": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "description": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "manufacturer": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "brand": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "series": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "model": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "vendorPartNumber": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "manufacturerPartNumber": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "manufacturerSuggestedRetailPrice": {
+          "type": [
+            "null",
+            "number"
+          ],
+          "format": "decimal"
+        },
+        "assets": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Asset"
+          }
+        },
+        "warranties": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Warranty"
+          }
+        },
+        "unitsOfMeasure": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "alternatives": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Alternative"
+          }
+        },
+        "additionalIdentifiers": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Identifier"
+          }
+        },
+        "specifications": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Specification"
+          }
+        },
+        "availabilitySpecifications": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Specification"
+          }
+        },
+        "id": {
+          "type": "string"
+        },
+        "categoryIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdOnUtc": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "format": "date-time"
+        },
+        "modifiedOnUtc": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "format": "date-time"
+        },
+        "active": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DisplayContent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "plainText": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "html": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "Asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "isPrimary": {
+          "type": "boolean"
+        },
+        "displayName": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "type": {
+          "$ref": "#/definitions/AssetType"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "AssetType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Unspecified",
+        "Image",
+        "Video",
+        "Attachment"
+      ],
+      "enum": [
+        "Unspecified",
+        "Image",
+        "Video",
+        "Attachment"
+      ]
+    },
+    "Warranty": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "durationInMonths": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "$ref": "#/definitions/WarrantyType"
+        },
+        "description": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        }
+      }
+    },
+    "WarrantyType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Unspecified",
+        "Manufacturer",
+        "Distributor"
+      ],
+      "enum": [
+        "Unspecified",
+        "Manufacturer",
+        "Distributor"
+      ]
+    },
+    "Alternative": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "alternativeItemId": {
+          "type": "string"
+        },
+        "alternativeReason": {
+          "$ref": "#/definitions/AlternativeReason"
+        },
+        "description": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        }
+      }
+    },
+    "AlternativeReason": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Unspecified",
+        "Superseded",
+        "Upgrade",
+        "Downgrade",
+        "Equivalent"
+      ],
+      "enum": [
+        "Unspecified",
+        "Superseded",
+        "Upgrade",
+        "Downgrade",
+        "Equivalent"
+      ]
+    },
+    "Identifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "Specification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "createdOnUtc": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "format": "date-time"
+        },
+        "modifiedOnUtc": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "format": "date-time"
+        },
+        "name": {
+          "$ref": "#/definitions/DisplayContent"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "description": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "parentCategoryId": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "assets": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Asset"
+          }
+        }
+      }
+    },
+    "AttachedAsset": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "asset": {
+          "$ref": "#/definitions/Asset"
+        },
+        "attachToId": {
+          "type": "string"
+        },
+        "attachToType": {
+          "$ref": "#/definitions/RecordType"
+        },
+        "recordSeparator": {
+          "type": "string"
+        }
+      }
+    },
+    "RecordType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Unspecified",
+        "Product",
+        "ProductVariant",
+        "Category"
+      ],
+      "enum": [
+        "Unspecified",
+        "Product",
+        "ProductVariant",
+        "Category"
+      ]
+    },
+    "AttachedVariant": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "variant": {
+          "$ref": "#/definitions/Variant"
+        },
+        "productId": {
+          "type": "string"
+        }
+      }
+    },
+    "Variant": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "displayName": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "description": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "manufacturer": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "brand": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "series": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "model": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/DisplayContent"
+            }
+          ]
+        },
+        "vendorPartNumber": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "manufacturerPartNumber": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "manufacturerSuggestedRetailPrice": {
+          "type": [
+            "null",
+            "number"
+          ],
+          "format": "decimal"
+        },
+        "assets": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Asset"
+          }
+        },
+        "warranties": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Warranty"
+          }
+        },
+        "unitsOfMeasure": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "alternatives": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Alternative"
+          }
+        },
+        "additionalIdentifiers": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Identifier"
+          }
+        },
+        "specifications": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Specification"
+          }
+        },
+        "availabilitySpecifications": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Specification"
+          }
+        },
+        "id": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "variedSpecifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Specification"
+          }
+        },
+        "assetsMergeType": {
+          "$ref": "#/definitions/MergeType"
+        },
+        "warrantiesMergeType": {
+          "$ref": "#/definitions/MergeType"
+        },
+        "unitsOfMeasureMergeType": {
+          "$ref": "#/definitions/MergeType"
+        },
+        "alternativesMergeType": {
+          "$ref": "#/definitions/MergeType"
+        },
+        "additionalIdentifiersMergeType": {
+          "$ref": "#/definitions/MergeType"
+        },
+        "specificationsMergeType": {
+          "$ref": "#/definitions/MergeType"
+        }
+      }
+    },
+    "MergeType": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Replace",
+        "Merge"
+      ],
+      "enum": [
+        "Replace",
+        "Merge"
+      ]
+    },
+    "ItemAvailability": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "itemId": {
+          "type": "string"
+        },
+        "availabilitySpecifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Specification"
+          }
+        }
+      }
+    }
+  }
+}
