@@ -51,23 +51,24 @@
       "availabilitySpecifications": [
         {
           "value": "value",
-          "type": "type"
+          "type": "type",
+          "isAvailable": false
         }
       ],
       "id": "id",
       "categoryIds": [
         ""
       ],
-      "createdOnUtc": "2026-03-12T20:33:26.3878472+00:00",
-      "modifiedOnUtc": "2026-03-12T20:33:26.3879193+00:00",
+      "createdOnUtc": "2026-03-16T17:31:07.9426989+00:00",
+      "modifiedOnUtc": "2026-03-16T17:31:07.9428049+00:00",
       "active": false
     }
   ],
   "categories": [
     {
       "id": "id",
-      "createdOnUtc": "2026-03-12T20:33:26.3879441+00:00",
-      "modifiedOnUtc": "2026-03-12T20:33:26.3879464+00:00",
+      "createdOnUtc": "2026-03-16T17:31:07.9428269+00:00",
+      "modifiedOnUtc": "2026-03-16T17:31:07.9428295+00:00",
       "name": {
         "plainText": "plainText",
         "html": "html"
@@ -153,7 +154,8 @@
         "availabilitySpecifications": [
           {
             "value": "value",
-            "type": "type"
+            "type": "type",
+            "isAvailable": false
           }
         ],
         "id": "id",
@@ -179,7 +181,8 @@
       "availabilitySpecifications": [
         {
           "value": "value",
-          "type": "type"
+          "type": "type",
+          "isAvailable": false
         }
       ]
     }

@@ -191,7 +191,7 @@
             "null"
           ],
           "items": {
-            "$ref": "#/definitions/Specification"
+            "$ref": "#/definitions/AvailabilitySpecification"
           }
         },
         "id": {
@@ -382,6 +382,21 @@
         },
         "type": {
           "type": "string"
+        }
+      }
+    },
+    "AvailabilitySpecification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "isAvailable": {
+          "type": "boolean"
         }
       }
     },
@@ -628,7 +643,7 @@
             "null"
           ],
           "items": {
-            "$ref": "#/definitions/Specification"
+            "$ref": "#/definitions/AvailabilitySpecification"
           }
         },
         "id": {
@@ -685,7 +700,7 @@
         "availabilitySpecifications": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Specification"
+            "$ref": "#/definitions/AvailabilitySpecification"
           }
         }
       }
